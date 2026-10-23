@@ -84,5 +84,6 @@
 
 回退办法：删除 docs/editorial 下三个文件，并把 docs/reports/editorial/README.md 恢复为基线版本即可；源码与依赖不受影响，无需回退构建产物。
 
-提交SHA：见本文件末尾更新（提交后填写）。
-PR链接：见本文件末尾更新（创建后填写）。
+提交SHA：7647688c5474cdf2730b28736bf09f2a58127486（分支 workbuddy/editorial，已推送到 origin）。
+PR链接：本环境未安装 gh CLI，也无法用命令行创建 PR。请在 https://github.com/Shuyi1145/microwave-vision/pull/new/workbuddy/editorial 创建，base=main，compare=workbuddy/editorial，正文取 docs/reports/editorial/pr-body.md。未创建完成前不填写具体链接，避免虚构。
+推送状态：分支已成功推送，push 过程出现 credential-manager-core 提示但不影响结果；本任务未使用任何令牌，也未在仓库中写入凭据。
