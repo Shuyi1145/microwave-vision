@@ -57,5 +57,7 @@
 - 回退：删除 workbuddy/lesson-ui 分支即可，不影响 main 与其他任务目录。
 
 ## 7. 提交与 PR
-- 提交SHA：提交后补充
-- PR 链接：推送后补充（若本机无 gh 且浏览器需登录，则给出 Compare 地址）
+- 首个任务提交SHA：161a63e78d32a0d41814fc8ac2a3ad5b2866e864（本报告补充提交见分支最新记录）
+- 推送：origin/workbuddy/lesson-ui（首次推送时代理 502，重试后成功）
+- PR 链接：https://github.com/Shuyi1145/microwave-vision/pull/3 （base=main，已创建，未合并）
+- 合并提示：main 尚未含 v2，本 PR 携带公共基线提交 4fc8b7a；按 GITHUB.md 保持未合并，待集成方先处理公共基线。
