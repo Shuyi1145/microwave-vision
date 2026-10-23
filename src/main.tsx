@@ -1,4 +1,4 @@
-import {initializeMobile,useAppActive} from './MobileApp';
+import {initializeMobile,useAppActive,isAppActive} from './MobileApp';
 import {AnimationProvider,PageTransition} from './Animations';
 import React,{useEffect,useRef,useState} from 'react';
 import {createRoot} from 'react-dom/client';
@@ -41,7 +41,7 @@ function App({page}:{page:string}){
  const [records,setRecords]=useState(initial.records),[storageError,setStorageError]=useState(initial.error);
  const valid=r.trim()!==''&&x.trim()!==''&&z0.trim()!==''&&[+r,+x,+z0].every(Number.isFinite)&&+r>=0&&+z0>0&&Math.max(Math.abs(+r),Math.abs(+x),+z0)<=1e6;
  const z=valid?normalize(+r,+x,+z0):{re:1,im:0};const g=mode==='open'?{re:1,im:0}:reflection(z),local=rotate(g,distance);
- useEffect(()=>{if(!playing||!appActive||tab!=='\u5b9e\u9a8c\u5ba4')return;let id:number,last=0;function frame(now:number){if(last)setTime(t=>(t+Math.min((now-last)/1000,.1)*.5)%1);last=now;id=requestAnimationFrame(frame);}id=requestAnimationFrame(frame);return()=>cancelAnimationFrame(id);},[playing,tab,appActive]);
+ useEffect(()=>{if(!playing||!appActive||tab!=='\u5b9e\u9a8c\u5ba4')return;let id:number,last=0;function frame(now:number){if(!isAppActive()){id=requestAnimationFrame(frame);return;}if(last)setTime(t=>(t+Math.min((now-last)/1000,.1)*.5)%1);last=now;id=requestAnimationFrame(frame);}id=requestAnimationFrame(frame);return()=>cancelAnimationFrame(id);},[playing,tab,appActive]);
  function preset(rr:number,xx:number,m='finite'){setR(String(rr));setX(String(xx));setMode(m);setDistance(0);}
  function pick(v:Complex){if(!valid)return;const next=impedance(v);setDistance(0);if(!next||next.re>1e6/+z0||Math.abs(next.im)>1e6/+z0){setMode('open');return;}setMode('finite');setR(String(Math.max(0,+(next.re*(+z0)).toFixed(3))));setX(String(+(next.im*(+z0)).toFixed(3)));}
  function save(result:PracticeCompletion){try{const next=saveCompletion(localStorage,result);setRecords(next);setStorageError('');return true;}catch{setStorageError('\u4fdd\u5b58\u5931\u8d25\uff0c\u8bf7\u5728\u7ec3\u4e60\u62a5\u544a\u4e2d\u91cd\u8bd5\u3002');return false;}}

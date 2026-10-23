@@ -1,4 +1,6 @@
 {
+  "deviceType": "emulator",
+  "model": "sdk_gphone_x86_64",
   "serial": "emulator-5554",
   "android": "11",
   "checks": [
@@ -69,6 +71,10 @@
     {
       "name": "records survive process restart",
       "value": true
+    },
+    {
+      "name": "foreground animation resumes after background",
+      "value": true
     }
   ],
   "network": {
@@ -77,8 +83,8 @@
     "data": "0"
   },
   "result": {
-    "id": "practice-1792754583997-1-fu8952ux08i",
-    "date": "2026-10-23T11:23:06.538Z",
+    "id": "practice-1792755120778-1-leb32vjyj8f",
+    "date": "2026-10-23T11:32:02.634Z",
     "score": 80,
     "topic": "阻抗 → 反射 → 功率 → 驻波 → 沿线移动",
     "answers": [
@@ -122,7 +128,7 @@
   "touch": {
     "bounds": {
       "x": 34,
-      "y": 557.6796875,
+      "y": 554.7142944335938,
       "w": 344.19049072265625,
       "h": 344.19049072265625,
       "dpr": 2.625

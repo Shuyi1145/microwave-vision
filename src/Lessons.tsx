@@ -1,4 +1,4 @@
-import {useAppActive} from './MobileApp';
+import {useAppActive,isAppActive} from './MobileApp';
 import {AnimatedLink} from './Animations';
 import {useEffect,useState,type ReactNode} from 'react';
 import {Formula} from './Formula';
@@ -11,7 +11,7 @@ import {GuideHeatmap,ReferenceGallery,TransmissionHeatmap,ReadingPath,MatchingSt
 function useAnimation(){
  const appActive=useAppActive();
  const [phase,setPhase]=useState(.125),[playing,setPlaying]=useState(()=>!matchMedia('(prefers-reduced-motion: reduce)').matches);
- useEffect(()=>{if(!playing||!appActive)return;let id=0,last=0;const frame=(now:number)=>{if(!last)last=now;if(now-last>=33){const delta=Math.min((now-last)/1000,.15);setPhase(p=>(p+delta*.25)%1);last=now;}id=requestAnimationFrame(frame);};id=requestAnimationFrame(frame);return()=>cancelAnimationFrame(id);},[playing,appActive]);
+ useEffect(()=>{if(!playing||!appActive)return;let id=0,last=0;const frame=(now:number)=>{if(!isAppActive()){id=requestAnimationFrame(frame);return;}if(!last)last=now;if(now-last>=33){const delta=Math.min((now-last)/1000,.15);setPhase(p=>(p+delta*.25)%1);last=now;}id=requestAnimationFrame(frame);};id=requestAnimationFrame(frame);return()=>cancelAnimationFrame(id);},[playing,appActive]);
  return {phase,setPhase,playing,setPlaying};
 }
 type Animation=ReturnType<typeof useAnimation>;

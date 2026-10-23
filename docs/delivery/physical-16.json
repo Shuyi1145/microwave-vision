@@ -1,0 +1,118 @@
+{
+  "deviceType": "physical",
+  "model": "2211133C",
+  "android": "16",
+  "checks": [
+    {
+      "name": "manual native returns (prior user confirmation)",
+      "value": true
+    },
+    {
+      "name": "offline course",
+      "value": true
+    },
+    {
+      "name": "offline images",
+      "value": true
+    },
+    {
+      "name": "locked 0",
+      "value": true
+    },
+    {
+      "name": "locked 1",
+      "value": true
+    },
+    {
+      "name": "locked 2",
+      "value": true
+    },
+    {
+      "name": "locked 3",
+      "value": true
+    },
+    {
+      "name": "locked 4",
+      "value": true
+    },
+    {
+      "name": "score 80",
+      "value": true
+    },
+    {
+      "name": "one saved result",
+      "value": true
+    },
+    {
+      "name": "manual native touch (prior user and observed metrics)",
+      "value": true
+    },
+    {
+      "name": "no selected text",
+      "value": true
+    },
+    {
+      "name": "background hidden",
+      "value": true
+    },
+    {
+      "name": "background paused",
+      "value": true
+    },
+    {
+      "name": "record survives process restart",
+      "value": true
+    },
+    {
+      "name": "foreground animation resumes after background",
+      "value": true
+    }
+  ],
+  "network": {
+    "airplane": "1",
+    "wifi": "0"
+  },
+  "result": {
+    "id": "practice-1792755100167-1-z0t23hcgebj",
+    "date": "2026-10-23T11:31:41.735Z",
+    "score": 80,
+    "topic": "阻抗 → 反射 → 功率 → 驻波 → 沿线移动",
+    "answers": [
+      {
+        "questionId": "normalization",
+        "selected": 2,
+        "correct": 0,
+        "firstCorrect": false,
+        "category": "normalization"
+      },
+      {
+        "questionId": "complex-division",
+        "selected": 1,
+        "correct": 1,
+        "firstCorrect": true,
+        "category": "complex-division"
+      },
+      {
+        "questionId": "amplitude-power",
+        "selected": 1,
+        "correct": 1,
+        "firstCorrect": true,
+        "category": "amplitude-power"
+      },
+      {
+        "questionId": "vswr",
+        "selected": 1,
+        "correct": 1,
+        "firstCorrect": true,
+        "category": "vswr"
+      },
+      {
+        "questionId": "rotation",
+        "selected": 2,
+        "correct": 2,
+        "firstCorrect": true,
+        "category": "rotation"
+      }
+    ]
+  }
+}
