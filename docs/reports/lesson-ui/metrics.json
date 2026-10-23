@@ -1,0 +1,131 @@
+{
+  "browser": "Chrome/155.0.8059.86",
+  "report": [
+    {
+      "scenario": "390-default",
+      "file": "E:\\workbuddy-cache\\2026-10-23-18-57-29\\repos\\w2-layout\\docs\\reports\\lesson-ui\\w2-390-default.png",
+      "browser": "Chrome/155.0.8059.86",
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "bodyScrollWidth": 374,
+      "panelOpen": false,
+      "playPressed": "false",
+      "playText": "播放演示",
+      "gridColumns": "350px",
+      "figureWidth": 350,
+      "svgWidth": 320,
+      "svgNaturalWidth": 640,
+      "log": [],
+      "explanationScroll": true
+    },
+    {
+      "scenario": "390-params-expanded",
+      "file": "E:\\workbuddy-cache\\2026-10-23-18-57-29\\repos\\w2-layout\\docs\\reports\\lesson-ui\\w2-390-params-expanded.png",
+      "browser": "Chrome/155.0.8059.86",
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "bodyScrollWidth": 374,
+      "panelOpen": true,
+      "playPressed": "false",
+      "playText": "播放演示",
+      "gridColumns": "350px",
+      "figureWidth": 350,
+      "svgWidth": 320,
+      "svgNaturalWidth": 640,
+      "log": [],
+      "explanationScroll": true
+    },
+    {
+      "scenario": "390-keyboard-play",
+      "file": "E:\\workbuddy-cache\\2026-10-23-18-57-29\\repos\\w2-layout\\docs\\reports\\lesson-ui\\w2-390-keyboard-play.png",
+      "browser": "Chrome/155.0.8059.86",
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "bodyScrollWidth": 374,
+      "panelOpen": true,
+      "playPressed": "true",
+      "playText": "暂停演示",
+      "gridColumns": "350px",
+      "figureWidth": 350,
+      "svgWidth": 320,
+      "svgNaturalWidth": 640,
+      "log": [
+        "onPlayingChange(true) 已调用，播放状态仍由宿主持有"
+      ],
+      "explanationScroll": true
+    },
+    {
+      "scenario": "698-default",
+      "file": "E:\\workbuddy-cache\\2026-10-23-18-57-29\\repos\\w2-layout\\docs\\reports\\lesson-ui\\w2-698-default.png",
+      "browser": "Chrome/155.0.8059.86",
+      "scrollWidth": 683,
+      "clientWidth": 683,
+      "bodyScrollWidth": 667,
+      "panelOpen": false,
+      "playPressed": "false",
+      "playText": "播放演示",
+      "gridColumns": "635px",
+      "figureWidth": 635,
+      "svgWidth": 605,
+      "svgNaturalWidth": 640,
+      "log": [],
+      "explanationScroll": true
+    },
+    {
+      "scenario": "1024-default",
+      "file": "E:\\workbuddy-cache\\2026-10-23-18-57-29\\repos\\w2-layout\\docs\\reports\\lesson-ui\\w2-1024-default.png",
+      "browser": "Chrome/155.0.8059.86",
+      "scrollWidth": 1009,
+      "clientWidth": 1009,
+      "bodyScrollWidth": 993,
+      "panelOpen": true,
+      "playPressed": "false",
+      "playText": "播放演示",
+      "gridColumns": "615.328px 307.656px",
+      "figureWidth": 615,
+      "svgWidth": 577,
+      "svgNaturalWidth": 640,
+      "log": [],
+      "explanationScroll": true
+    },
+    {
+      "scenario": "1024-playing",
+      "file": "E:\\workbuddy-cache\\2026-10-23-18-57-29\\repos\\w2-layout\\docs\\reports\\lesson-ui\\w2-1024-playing.png",
+      "browser": "Chrome/155.0.8059.86",
+      "scrollWidth": 1009,
+      "clientWidth": 1009,
+      "bodyScrollWidth": 993,
+      "panelOpen": true,
+      "playPressed": "true",
+      "playText": "暂停演示",
+      "gridColumns": "615.328px 307.656px",
+      "figureWidth": 615,
+      "svgWidth": 577,
+      "svgNaturalWidth": 640,
+      "log": [
+        "onPlayingChange(true) 已调用，播放状态仍由宿主持有"
+      ],
+      "explanationScroll": true
+    },
+    {
+      "scenario": "1024-back-callback",
+      "file": "E:\\workbuddy-cache\\2026-10-23-18-57-29\\repos\\w2-layout\\docs\\reports\\lesson-ui\\w2-1024-back-callback.png",
+      "browser": "Chrome/155.0.8059.86",
+      "scrollWidth": 1009,
+      "clientWidth": 1009,
+      "bodyScrollWidth": 993,
+      "panelOpen": true,
+      "playPressed": "true",
+      "playText": "暂停演示",
+      "gridColumns": "615.328px 307.656px",
+      "figureWidth": 615,
+      "svgWidth": 577,
+      "svgNaturalWidth": 640,
+      "log": [
+        "onBack() 已调用，回退动作由宿主决定",
+        "onPlayingChange(true) 已调用，播放状态仍由宿主持有"
+      ],
+      "explanationScroll": true
+    }
+  ]
+}
