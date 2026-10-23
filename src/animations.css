@@ -1,0 +1,23 @@
+/* Interface motion is independent of the physical simulation clock. */
+.page-transition{min-height:100vh}
+.landing{background:radial-gradient(ellipse at 84% 25%,#eaf3f680,transparent 48%),radial-gradient(ellipse at 20% 80%,#eaf6ee70,transparent 55%),#fbfcfa}
+.hero-art{filter:drop-shadow(0 18px 30px #365b680b)}
+.module-card,.topic-card{position:relative;isolation:isolate;overflow:hidden;transition:border-color .2s,box-shadow .2s,background-color .2s}
+.module-card:hover,.topic-card:hover{box-shadow:0 18px 38px #38665e12;border-color:#97c8be;transform:none}
+.module-card:before,.topic-card:before{content:"";position:absolute;top:0;left:26px;right:26px;height:2px;background:linear-gradient(90deg,transparent,#65aa9d,transparent);opacity:0;transition:opacity .2s}
+.module-card:hover:before,.topic-card:hover:before{opacity:1}
+.module-icon,.topic-top b{box-shadow:inset 0 0 0 1px #ffffffb0;transition:background-color .2s}
+.module-action>span{transition:transform .2s}
+.module-card:hover .module-action>span{transform:translate(3px,-3px)}
+.hero-cta{box-shadow:0 8px 24px #238b7e25;transition:box-shadow .2s,background-color .2s,transform .2s}
+.hero-cta:hover{box-shadow:0 12px 28px #238b7e32;transform:translateY(-2px)}
+.hero-cta>span{transition:transform .2s}.hero-cta:hover>span{transform:translateX(4px)}
+button,.home-return{transition:background-color .18s,border-color .18s,box-shadow .18s}
+button:not(:disabled):active{box-shadow:inset 0 2px 5px #24544f15}
+:where(a,button,input,select,summary):focus-visible{outline:3px solid #219786;outline-offset:4px}
+.reading-tabs button[aria-current="step"]{box-shadow:inset 0 -3px #219786}
+.reading-path article{min-height:120px}
+.figure-overlay[open]{animation:preview-in .2s ease-out}
+.figure-overlay::backdrop{background:#183c4966;backdrop-filter:blur(5px)}
+@keyframes preview-in{from{opacity:0;transform:translateY(8px) scale(.99)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.module-action>span,.hero-cta,.hero-cta>span,button,.home-return,.module-card,.topic-card,.module-icon,.topic-top b{transition:none}.hero-cta:hover,.module-card:hover .module-action>span{transform:none}.figure-overlay[open]{animation:none}}

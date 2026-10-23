@@ -1,0 +1,13 @@
+import {describe,it,expect} from 'vitest';
+import {C0,coax,guide,guideField,lineParameters,quarterMatch} from './coursePhysics';
+import {magnitude} from './physics';
+describe('course analytical models',()=>{
+ it('L=250 nH/m C=100 pF/m gives 50 ohms and 2e8 m/s',()=>{const p=lineParameters(250,100,1000);expect(p.z0).toBeCloseTo(50);expect(p.velocity).toBeCloseTo(2e8);expect(p.lambda).toBeCloseTo(.2);expect(()=>lineParameters(100,20,1000)).toThrow();});
+ it('coax increases impedance with radius ratio and reduces it with permittivity',()=>{const p=coax(1,Math.E,1);expect(p.z0).toBeCloseTo(59.95849,4);expect(coax(1,Math.E,4).z0).toBeCloseTo(p.z0/2);expect(()=>coax(2,1,1)).toThrow();});
+ it('TE10 cutoff and dispersion agree with closed form',()=>{const p=guide('TE',1,0,22.86,10.16,10);expect(p.fc).toBeCloseTo(C0/(2*.02286));expect(p.vp*p.vg).toBeCloseTo(C0*C0,-2);expect(p.vp).toBeGreaterThan(C0);expect(p.vg).toBeLessThan(C0);});
+ it('cutoff is explicit, below-cutoff attenuation is real and TE00/TM10 invalid',()=>{const fc=C0/(2*.02286);expect(guide('TE',1,0,22.86,10.16,fc/1e9).state).toBe('cutoff');const p=guide('TE',1,0,22.86,10.16,5);expect(p.state).toBe('evanescent');expect(p.alpha).toBeGreaterThan(0);expect(p.beta).toBe(0);expect(()=>guide('TM',1,0,22.86,10.16,10)).toThrow();expect(()=>guide('TE',0,0,22.86,10.16,10)).toThrow();});
+ it('TM11 has higher cutoff than TE10; epsilon scales cutoff',()=>{expect(guide('TM',1,1,22.86,10.16,20).fc).toBeGreaterThan(guide('TE',1,0,22.86,10.16,20).fc);expect(guide('TE',1,0,22.86,10.16,10,4).fc).toBeCloseTo(guide('TE',1,0,22.86,10.16,10).fc/2);});
+ it('longitudinal field constraints and conducting-wall tangential E hold',()=>{for(const kind of ['TE','TM'] as const){const m=1,n=kind==='TE'?0:1,p=guide(kind,m,n,22.86,10.16,20);for(const x of [0,.3,1])for(const y of [0,.4,1]){const v=guideField(kind,m,n,.02286,.01016,p.beta,x,y,.7);expect(kind==='TE'?v.ez:v.hz).toBe(0);if(x===0||x===1){expect(v.ey).toBeCloseTo(0);expect(v.ez).toBeCloseTo(0);}if(y===0||y===1){expect(v.ex).toBeCloseTo(0);expect(v.ez).toBeCloseTo(0);}}}});
+ it('TE10 electric field vanishes at side walls and peaks at center',()=>{const p=guide('TE',1,0,22.86,10.16,10);const v=guideField('TE',1,0,.02286,.01016,p.beta,.5,.5,Math.PI/2);expect(v.ey).toBeCloseTo(1);expect(v.ex).toBeCloseTo(0);});
+ it('quarter wave matches pure real loads, detuning reintroduces reflection',()=>{for(const load of [25,50,100,200]){const p=quarterMatch(50,load,1);expect(p.transformer).toBeCloseTo(Math.sqrt(50*load));expect(p.input.re).toBeCloseTo(50);expect(magnitude(p.gamma)).toBeCloseTo(0);}expect(magnitude(quarterMatch(50,100,.7).gamma)).toBeGreaterThan(.1);});
+});

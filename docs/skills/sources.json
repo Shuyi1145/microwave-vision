@@ -1,0 +1,20 @@
+[
+  {
+    "skill": "frontend-design",
+    "source": "https://github.com/anthropics/skills/tree/main/skills/frontend-design",
+    "installed_on": "2026-10-23",
+    "skill_md_sha256": "d91970639e9f5c37682ac7ab60094d35f1c7c1f38d731bd56396563aee10c1d3",
+    "encoding": "upstream preserved",
+    "git_commit": "not recorded; installed content fingerprint recorded",
+    "license_file_in_installed_copy": true
+  },
+  {
+    "skill": "web-design-guidelines",
+    "source": "https://github.com/vercel-labs/agent-skills/tree/main/skills/web-design-guidelines",
+    "installed_on": "2026-10-23",
+    "skill_md_sha256": "f4647ca866a3accf763777f83e7682954f0187cd6bea7eea0399796652414e8f",
+    "encoding": "upstream preserved",
+    "git_commit": "not recorded; installed content fingerprint recorded",
+    "license_file_in_installed_copy": false
+  }
+]

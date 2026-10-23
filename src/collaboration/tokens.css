@@ -1,0 +1,4 @@
+:root{--mv-surface:#ffffff;--mv-background:#f4f7fa;--mv-text:#263b50;--mv-muted:#567183;--mv-accent:#168d83;--mv-border:#d5e4e8;--mv-warning:#b56d23;--mv-radius:16px;--mv-font:"Microsoft YaHei","PingFang SC",sans-serif}
+.mv-preview{font-family:var(--mv-font);color:var(--mv-text);background:var(--mv-background);min-height:100vh}
+.mv-preview>nav{padding:12px;display:flex;gap:20px;background:#fff;border-bottom:1px solid var(--mv-border)}
+.mv-preview>section{padding:24px}

@@ -1,0 +1,5 @@
+# Skill安装记录与使用范围
+已安装frontend-design和web-design-guidelines到Codex用户skills目录，并复制同一份到WorkBuddy用户skills目录。Codex下轮对话可使用；WorkBuddy是否自动加载尚未在其会话中验证，可直接按提示词读取仓库副本，必要时刷新Skill列表或开启新会话。
+docs/skills为安装时的原始参考副本，保持上游编码和已有许可文件，不转换为GB2312。sources.json记录来源与文件SHA256；未记录上游commit，不得声称已固定Git提交版本。
+Skill是模型工作指导，不是应用运行依赖，也不会自动改变界面。前端设计以用户浅色、中文、科学准确为先；审查Skill可能引用远端规范，应先阅读确认与当前任务相关，不能盲执行外部脚本。目录中的上游文件只读。
+Lucide、Magic UI、shadcn/ui、React Bits属于组件项目，此次没有安装这些运行时依赖。Motion已在工程中，模块优先复用现有依赖。
