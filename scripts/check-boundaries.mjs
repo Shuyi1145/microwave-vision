@@ -3,12 +3,15 @@ import {readdirSync,readFileSync,existsSync} from 'node:fs';
 import path from 'node:path';
 import ts from 'typescript';
 const module=process.argv[2];
-if(!['portal','lesson-ui','practice'].includes(module))throw Error('Usage: node scripts/check-boundaries.mjs portal|lesson-ui|practice [base-ref]');
-const base=process.argv[3]??process.env.BASE_REF??'origin/main';
+if(module==='practice')throw Error('Practice is owned by Codex under the v2 plan.');
+if(!['portal','lesson-ui','editorial','qa'].includes(module))throw Error('Usage: node scripts/check-boundaries.mjs portal|lesson-ui|editorial|qa [base-ref]');
+let defaultBase='origin/main';
+try{execFileSync('git',['rev-parse','--verify','collaboration-v2'],{stdio:'pipe'});try{execFileSync('git',['merge-base','--is-ancestor','collaboration-v2','origin/main'],{stdio:'pipe'});}catch{defaultBase='collaboration-v2';}}catch{}
+const base=process.argv[3]??process.env.BASE_REF??defaultBase;
 const git=(...args)=>execFileSync('git',args,{encoding:'utf8'}).trim();
 const mergeBase=git('merge-base',base,'HEAD');
 const files=new Set([...git('diff','--name-only',mergeBase).split('\n'),...git('ls-files','--others','--exclude-standard').split('\n')].filter(Boolean));
-const allowed=[`src/features/${module}/`,`docs/reports/${module}/`];
+const allowed=module==='editorial'?['docs/editorial/','docs/reports/editorial/']:module==='qa'?['docs/reports/qa/']:[`src/features/${module}/`,`docs/reports/${module}/`];
 const violations=[...files].filter(file=>!allowed.some(prefix=>file.startsWith(prefix)));
 const root=process.cwd(),taskRoot=path.resolve(root,`src/features/${module}`);
 const shared=['physics','coursePhysics','fieldMaps','Formula','courseContent'];
