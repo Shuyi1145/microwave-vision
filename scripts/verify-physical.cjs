@@ -1,0 +1,45 @@
+const fs=require('fs'),cp=require('child_process');
+const adb=process.argv[2],serial=process.argv[3],port=Number(process.argv[4]);
+const run=(...args)=>cp.execFileSync(adb,['-s',serial,...args],{encoding:'utf8'}).trim();
+const pause=ms=>new Promise(r=>setTimeout(r,ms));
+async function connect(){const pid=run('shell','pidof','com.microwavevision.learning');run('forward','tcp:'+port,'localabstract:webview_devtools_remote_'+pid);let pages;for(let attempt=0;attempt<10;attempt++){try{pages=await(await fetch('http://127.0.0.1:'+port+'/json',{headers:{Connection:'close'}})).json();if(pages.length)break;}catch{}await pause(500);}if(!pages?.length)throw Error('WebView unavailable');const ws=new WebSocket(pages[0].webSocketDebuggerUrl);await new Promise((r,j)=>{ws.onopen=r;ws.onerror=j;});let id=0;const pending=new Map();ws.onmessage=e=>{const m=JSON.parse(e.data);if(m.id){const cb=pending.get(m.id);pending.delete(m.id);m.error?cb.reject(Error(JSON.stringify(m.error))):cb.resolve(m.result);}};return {ws,send:(method,params={})=>new Promise((resolve,reject)=>{pending.set(++id,{resolve,reject});const requestId=id;setTimeout(()=>{if(pending.has(requestId)){pending.delete(requestId);reject(Error('CDP timeout: '+method));}},8000).unref();ws.send(JSON.stringify({id,method,params}));})};}
+(async()=>{
+ const report={version:run('shell','dumpsys','package','com.microwavevision.learning').match(/versionName=([^\s]+)/)?.[1],deviceType:'physical',model:run('shell','getprop','ro.product.model'),android:run('shell','getprop','ro.build.version.release'),checks:[]};let c=await connect();
+ const evaluate=async expression=>{const r=await c.send('Runtime.evaluate',{expression,returnByValue:true,awaitPromise:true});if(r.exceptionDetails)throw Error(JSON.stringify(r.exceptionDetails));return r.result.value;};
+ const check=(name,value)=>{console.log(name,value);report.checks.push({name,value});if(!value)throw Error(name);};
+ const route=async hash=>{await evaluate('location.hash='+JSON.stringify(hash));await pause(500);};
+ const airplane=run('shell','settings','get','global','airplane_mode_on'),wifi=run('shell','settings','get','global','wifi_on'),data=run('shell','settings','get','global','mobile_data');
+ try{
+  if(process.argv[5]!=='resume')check('manual native returns (user confirmed) end at catalog',await evaluate("location.hash==='#/labs'"));else{const previous=JSON.parse(fs.readFileSync('docs/delivery/physical-16.json'));check('manual native returns (prior user confirmation)',previous.checks.some(v=>v.name.startsWith('manual native returns')&&v.value));}
+  run('shell','cmd','connectivity','airplane-mode','enable');run('shell','svc','wifi','disable');run('shell','svc','data','disable');await pause(600);report.network={airplane:run('shell','settings','get','global','airplane_mode_on'),wifi:run('shell','settings','get','global','wifi_on')};
+
+  await route('#/');check('W1 offline single entry',await evaluate("document.querySelectorAll('.mv-portal a').length===1&&!!document.querySelector('.mv-cta')"));
+  await evaluate("document.querySelector('.mv-cta').click()");await pause(200);check('W1 offline hub',await evaluate("location.hash==='#/hub'&&document.querySelectorAll('.mv-grid-hub .mv-card-link').length===4"));
+  await evaluate("document.querySelector('.mv-grid-hub a[href=\"#/labs\"]').click()");await pause(200);check('W1 offline six courses',await evaluate("location.hash==='#/labs'&&document.querySelectorAll('.mv-grid-topic .mv-card-link').length===6"));
+  await evaluate("document.querySelector('.mv-grid-topic a[href=\"#/labs/te\"]').click()");await pause(200);check('W1 offline course navigation',await evaluate("location.hash==='#/labs/te'"));
+  await route('#/labs/te');check('offline course',await evaluate("document.body.innerText.includes('TE10')&&document.querySelectorAll('canvas').length>0"));
+
+  const lessonPanel="document.querySelector('.mv-lesson-ui__panel')";
+  check('W2 mobile params initially collapsed',await evaluate(lessonPanel+'.open===false'));
+  await evaluate(lessonPanel+".querySelector('summary').click()");await pause(150);check('W2 params expand',await evaluate(lessonPanel+'.open'));
+  await evaluate("document.querySelector('.frequency-presets button').click()");await pause(150);check('W2 cutoff parameter linked',await evaluate("document.querySelector('.mode-status').dataset.state==='evanescent'"));
+  await evaluate("document.querySelector('.frequency-presets button:last-child').click()");await pause(150);check('W2 propagation parameter linked',await evaluate("document.querySelector('.mode-status').dataset.state==='propagating'"));
+  const playBefore=await evaluate("document.querySelector('.mv-lesson-ui__play').getAttribute('aria-pressed')");await evaluate("document.querySelector('.mv-lesson-ui__play').click()");await pause(150);check('W2 playback controlled',playBefore!==await evaluate("document.querySelector('.mv-lesson-ui__play').getAttribute('aria-pressed')"));
+  await evaluate("Promise.all([...document.images].map(i=>{i.loading='eager';return i.decode().catch(()=>{});} ))");check('offline images',await evaluate('[...document.images].every(i=>i.complete&&i.naturalWidth>0)'));
+  await route('#/microwave/quiz');const before=await evaluate("JSON.parse(localStorage.getItem('mw-records-v1')||'[]').length");
+  for(const [step,selected] of [2,1,1,1,2].entries()){await evaluate('document.querySelectorAll(".choices button")['+selected+'].click()');await pause(100);check('locked '+step,await evaluate("[...document.querySelectorAll('.choices button')].every(b=>b.disabled)"));await evaluate("document.querySelector('.feedback button').click()");await pause(100);}
+  check('score 80',await evaluate("document.querySelector('.quiz h1').textContent.includes('80')"));const records=await evaluate("JSON.parse(localStorage.getItem('mw-records-v1'))");check('one saved result',records.length===Math.min(50,before+1));report.result=records[0];
+  await route('#/microwave');await evaluate("document.querySelector('.smith').scrollIntoView({block:'center'})");await pause(300);const prior=await evaluate("document.querySelector('.metrics').innerText");console.log('READY_FOR_MANUAL_TOUCH');
+  let changed=false;if(process.argv[5]==='resume'){const previous=JSON.parse(fs.readFileSync('docs/delivery/physical-16.json'));changed=previous.checks.some(v=>v.name.includes('manual native touch')&&v.value);}else for(let i=0;i<150;i++){await pause(1000);if(prior!==await evaluate("document.querySelector('.metrics').innerText")){changed=true;break;}}
+  check(process.argv[5]==='resume'?'manual native touch (prior user and observed metrics)':'manual native touch updates chart metrics',changed);check('no selected text',await evaluate("getSelection().toString()===''"));
+  run('shell','screencap','-p','/sdcard/mv-evidence.png');run('pull','/sdcard/mv-evidence.png','docs/delivery/physical-16-smith.png');
+  run('shell','am','start','-a','android.intent.action.MAIN','-c','android.intent.category.HOME');await pause(2500);check('background hidden',await evaluate('document.hidden'));await pause(500);const stopped=await evaluate("JSON.stringify([...document.querySelectorAll('.waves path')].map(p=>p.getAttribute('d')))");await pause(500);check('background paused',stopped===await evaluate("JSON.stringify([...document.querySelectorAll('.waves path')].map(p=>p.getAttribute('d')))"));
+  run('shell','am','start','-n','com.microwavevision.learning/.MainActivity');await pause(600);const resumed=await evaluate("document.querySelector('.waves svg').innerHTML");await pause(600);check('foreground animation resumes',resumed!==await evaluate("document.querySelector('.waves svg').innerHTML"));await route('#/microwave/records');run('shell','screencap','-p','/sdcard/mv-evidence.png');run('pull','/sdcard/mv-evidence.png','docs/delivery/physical-16-records.png');
+  c.ws.close();run('shell','am','force-stop','com.microwavevision.learning');run('shell','am','start','-n','com.microwavevision.learning/.MainActivity');await pause(2500);c=await connect();await route('#/microwave/records');check('record survives process restart',await evaluate('JSON.parse(localStorage.getItem("mw-records-v1"))[0].id==='+JSON.stringify(records[0].id)));
+ }catch(error){report.failure=String(error.message).replaceAll(serial,'[device]');throw error;}finally{
+  c.ws.close();const cleanup=[];const restore=(...args)=>{try{run(...args);}catch(error){cleanup.push(String(error.message).replaceAll(serial,'[device]'));}};
+  if(airplane!=='1')restore('shell','cmd','connectivity','airplane-mode','disable');if(wifi==='1')restore('shell','svc','wifi','enable');if(data==='1')restore('shell','svc','data','enable');
+  report.cleanupWarnings=cleanup;report.completed=report.checks.some(v=>v.name.includes('process restart')&&v.value)&&!report.failure;fs.writeFileSync('docs/delivery/physical-16.json',JSON.stringify(report,null,2));if(cleanup.length)process.exitCode=1;
+ }
+ console.log(JSON.stringify(report));
+})().catch(e=>{console.error(e.message);process.exitCode=1;});

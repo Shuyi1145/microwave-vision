@@ -1,0 +1,41 @@
+
+> microwave-vision@1.0.0 test
+> vitest run --reporter=verbose
+
+
+ RUN  v5.0.5 <workspace>
+
+ ✓ src/physics.test.ts > lossless transmission line reference cases > normalizes physical impedance and rejects invalid input 4ms
+ ✓ src/physics.test.ts > lossless transmission line reference cases > matched load has zero reflection and unit VSWR 1ms
+ ✓ src/physics.test.ts > lossless transmission line reference cases > short, open and reactive loads lie on unit circle 1ms
+ ✓ src/physics.test.ts > lossless transmission line reference cases > 100+j50 ohms on 50 ohm line gives 0.4+j0.2 1ms
+ ✓ src/physics.test.ts > lossless transmission line reference cases > quarter wave inverts impedance, half wave repeats it 1ms
+ ✓ src/physics.test.ts > lossless transmission line reference cases > round trips passive complex loads and preserves radius 1ms
+ ✓ src/physics.test.ts > lossless transmission line reference cases > waves satisfy short/open voltage boundary conditions 0ms
+ ✓ src/physics.test.ts > lossless transmission line reference cases > envelope matches local reflection coefficient 0ms
+ ✓ src/physics.test.ts > five-question reference matches independent rectangular values 0ms
+ ✓ src/features/practice/model.test.ts > counts only first answers, ignores stale events and completes exactly once 4ms
+ ✓ src/features/practice/model.test.ts > rejects invalid selections and unfinished completion 0ms
+ ✓ src/records.test.ts > preserves legacy records, persists feedback, and deduplicates retries 3ms
+ ✓ src/records.test.ts > failed writes can retry without acknowledging or duplicating a result 1ms
+ ✓ src/records.test.ts > corrupt collections are not overwritten by a save 1ms
+ ✓ src/coursePhysics.test.ts > course analytical models > L=250 nH/m C=100 pF/m gives 50 ohms and 2e8 m/s 3ms
+ ✓ src/coursePhysics.test.ts > course analytical models > coax increases impedance with radius ratio and reduces it with permittivity 1ms
+ ✓ src/coursePhysics.test.ts > course analytical models > TE10 cutoff and dispersion agree with closed form 1ms
+ ✓ src/coursePhysics.test.ts > course analytical models > cutoff is explicit, below-cutoff attenuation is real and TE00/TM10 invalid 1ms
+ ✓ src/coursePhysics.test.ts > course analytical models > TM11 has higher cutoff than TE10; epsilon scales cutoff 0ms
+ ✓ src/coursePhysics.test.ts > course analytical models > longitudinal field constraints and conducting-wall tangential E hold 2ms
+ ✓ src/coursePhysics.test.ts > course analytical models > TE10 electric field vanishes at side walls and peaks at center 0ms
+ ✓ src/coursePhysics.test.ts > course analytical models > quarter wave matches pure real loads, detuning reintroduces reflection 1ms
+ ✓ src/fieldMaps.test.ts > TE10 longitudinal E stays zero while transverse electric field peaks at center 3ms
+ ✓ src/fieldMaps.test.ts > TM longitudinal electric field has conducting-wall nodes and a center peak 0ms
+ ✓ src/fieldMaps.test.ts > field normalization remains bounded for high modes and phases without phase-dependent gain 9ms
+ ✓ src/fieldMaps.test.ts > TM11 midplane magnetic slice uses its cycle peak, not an unattainable global reference 1ms
+ ✓ src/fieldMaps.test.ts > zero field slices remain zero and do not acquire large normalization gain 6ms
+ ✓ src/MobileApp.test.ts > blocks frame advancement immediately when document becomes hidden 3ms
+ ✓ src/MobileApp.test.ts > native back follows learning hierarchy and minimizes at cover 1ms
+
+ Test Files  6 passed (6)
+      Tests  29 passed (29)
+   Start at  20:54:11
+   Duration  266ms (import 47%, transform 28%, tests 16%, worker 9%)

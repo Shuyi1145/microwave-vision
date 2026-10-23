@@ -1,0 +1,475 @@
+{
+  "routes": [
+    {
+      "width": 390,
+      "route": "#/",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 390,
+      "route": "#/hub",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 390,
+      "route": "#/labs",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 390,
+      "route": "#/microwave",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 390,
+      "route": "#/labs/line",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 390,
+      "route": "#/labs/tem",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 390,
+      "route": "#/labs/te",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 390,
+      "route": "#/labs/tm",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 390,
+      "route": "#/labs/matching",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 390,
+      "route": "#/microwave/quiz",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 390,
+      "route": "#/microwave/records",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 390,
+      "route": "#/microwave/handbook",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 698,
+      "route": "#/",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 698,
+      "route": "#/hub",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 698,
+      "route": "#/labs",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 698,
+      "route": "#/microwave",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 698,
+      "route": "#/labs/line",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 698,
+      "route": "#/labs/tem",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 698,
+      "route": "#/labs/te",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 698,
+      "route": "#/labs/tm",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 698,
+      "route": "#/labs/matching",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 698,
+      "route": "#/microwave/quiz",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 698,
+      "route": "#/microwave/records",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 698,
+      "route": "#/microwave/handbook",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 1024,
+      "route": "#/",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 1024,
+      "route": "#/hub",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 1024,
+      "route": "#/labs",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 1024,
+      "route": "#/microwave",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 1024,
+      "route": "#/labs/line",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 1024,
+      "route": "#/labs/tem",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 1024,
+      "route": "#/labs/te",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 1024,
+      "route": "#/labs/tm",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 1024,
+      "route": "#/labs/matching",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 1024,
+      "route": "#/microwave/quiz",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 1024,
+      "route": "#/microwave/records",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 1024,
+      "route": "#/microwave/handbook",
+      "overflow": false,
+      "formulaErrors": 0
+    }
+  ],
+  "checks": [
+    {
+      "name": "W1 single entry 390",
+      "value": true
+    },
+    {
+      "name": "W1 entry keyboard focus 390",
+      "value": true
+    },
+    {
+      "name": "W1 four hub links 390",
+      "value": true
+    },
+    {
+      "name": "W1 six topic links 390",
+      "value": true
+    },
+    {
+      "name": "W1 catalog has no source banner 390",
+      "value": true
+    },
+    {
+      "name": "W1 smith route 390",
+      "value": true
+    },
+    {
+      "name": "W1 single entry 698",
+      "value": true
+    },
+    {
+      "name": "W1 entry keyboard focus 698",
+      "value": true
+    },
+    {
+      "name": "W1 four hub links 698",
+      "value": true
+    },
+    {
+      "name": "W1 six topic links 698",
+      "value": true
+    },
+    {
+      "name": "W1 catalog has no source banner 698",
+      "value": true
+    },
+    {
+      "name": "W1 smith route 698",
+      "value": true
+    },
+    {
+      "name": "W1 single entry 1024",
+      "value": true
+    },
+    {
+      "name": "W1 entry keyboard focus 1024",
+      "value": true
+    },
+    {
+      "name": "W1 four hub links 1024",
+      "value": true
+    },
+    {
+      "name": "W1 six topic links 1024",
+      "value": true
+    },
+    {
+      "name": "W1 catalog has no source banner 1024",
+      "value": true
+    },
+    {
+      "name": "W1 smith route 1024",
+      "value": true
+    },
+    {
+      "name": "W1 hub route #/microwave/quiz",
+      "value": true
+    },
+    {
+      "name": "W1 hub route #/microwave/records",
+      "value": true
+    },
+    {
+      "name": "W1 hub route #/microwave/handbook",
+      "value": true
+    },
+    {
+      "name": "W1 native new tab",
+      "value": true
+    },
+    {
+      "name": "decorative footer removed on all routes",
+      "value": true
+    },
+    {
+      "name": "TEM has no cutoff label",
+      "value": true
+    },
+    {
+      "name": "W2 default panel 390",
+      "value": true
+    },
+    {
+      "name": "W2 real cutoff controls 390",
+      "value": true
+    },
+    {
+      "name": "W2 real propagation controls 390",
+      "value": true
+    },
+    {
+      "name": "W2 host playback initially reduced 390",
+      "value": true
+    },
+    {
+      "name": "W2 host play callback 390",
+      "value": true
+    },
+    {
+      "name": "W2 touch target 390",
+      "value": true
+    },
+    {
+      "name": "W2 keyboard collapse 390",
+      "value": true
+    },
+    {
+      "name": "W2 heading stacks 390",
+      "value": true
+    },
+    {
+      "name": "W2 default panel 698",
+      "value": true
+    },
+    {
+      "name": "W2 real cutoff controls 698",
+      "value": true
+    },
+    {
+      "name": "W2 real propagation controls 698",
+      "value": true
+    },
+    {
+      "name": "W2 host playback initially reduced 698",
+      "value": true
+    },
+    {
+      "name": "W2 host play callback 698",
+      "value": true
+    },
+    {
+      "name": "W2 touch target 698",
+      "value": true
+    },
+    {
+      "name": "W2 keyboard collapse 698",
+      "value": true
+    },
+    {
+      "name": "W2 heading stacks 698",
+      "value": true
+    },
+    {
+      "name": "W2 default panel 1024",
+      "value": true
+    },
+    {
+      "name": "W2 real cutoff controls 1024",
+      "value": true
+    },
+    {
+      "name": "W2 real propagation controls 1024",
+      "value": true
+    },
+    {
+      "name": "W2 host playback initially reduced 1024",
+      "value": true
+    },
+    {
+      "name": "W2 host play callback 1024",
+      "value": true
+    },
+    {
+      "name": "W2 touch target 1024",
+      "value": true
+    },
+    {
+      "name": "W2 keyboard collapse 1024",
+      "value": true
+    },
+    {
+      "name": "W2 heading stacks 1024",
+      "value": true
+    },
+    {
+      "name": "static lesson has no fake playback",
+      "value": true
+    },
+    {
+      "name": "W4 favicon 200",
+      "value": true
+    },
+    {
+      "name": "W4 route focus is themed",
+      "value": true
+    },
+    {
+      "name": "answer locked 0",
+      "value": true
+    },
+    {
+      "name": "answer locked 1",
+      "value": true
+    },
+    {
+      "name": "answer locked 2",
+      "value": true
+    },
+    {
+      "name": "answer locked 3",
+      "value": true
+    },
+    {
+      "name": "answer locked 4",
+      "value": true
+    },
+    {
+      "name": "first score 80",
+      "value": true
+    },
+    {
+      "name": "failure visible",
+      "value": true
+    },
+    {
+      "name": "retry stored once",
+      "value": true
+    },
+    {
+      "name": "reload retains record",
+      "value": true
+    },
+    {
+      "name": "preview open",
+      "value": true
+    },
+    {
+      "name": "preview focus restored",
+      "value": true
+    },
+    {
+      "name": "no runtime errors",
+      "value": true
+    }
+  ],
+  "runtimeErrors": []
+}

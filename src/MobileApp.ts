@@ -3,9 +3,10 @@ import {Capacitor} from '@capacitor/core';
 import {App} from '@capacitor/app';
 import './mobile.css';
 let active=true;
+export function isAppActive(){return !document.hidden&&active;}
 export function useAppActive(){
- const [visible,setVisible]=useState(()=>!document.hidden&&active);
- useEffect(()=>{const update=()=>setVisible(!document.hidden&&active);document.addEventListener('visibilitychange',update);window.addEventListener('native-activity',update);return()=>{document.removeEventListener('visibilitychange',update);window.removeEventListener('native-activity',update);};},[]);
+ const [visible,setVisible]=useState(()=>isAppActive());
+ useEffect(()=>{const update=()=>setVisible(isAppActive());document.addEventListener('visibilitychange',update);window.addEventListener('native-activity',update);return()=>{document.removeEventListener('visibilitychange',update);window.removeEventListener('native-activity',update);};},[]);
  return visible;
 }
 export function parentRoute(hash:string){
