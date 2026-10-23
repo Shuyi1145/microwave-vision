@@ -37,7 +37,7 @@
 |Android15模拟器|通过|android-15.json和截图，同等检查；与Android11分开记录|
 |小米13实体机Android16|通过（限定范围）|physical-16.json和截图：安装、W1离线导航、W2折叠调参/播放、离线课程/图片、首错80分/单份保存、后台暂停/恢复、强制结束后记录保留；原生返回与手指拖动由用户手工执行并明确确认，页面状态及数值变化由调试通道复核。后续纯文案更新沿用未改变交互的手工证据|
 |源码与PR|通过|小步提交至codex/integration；PR #1保留审阅，不自动合并main|
-|CI|见PR实时结果|344278b及e86e881的Web quality已success（run39943205685、39945810551）；最终新增提交推送后另外核对，不能用旧CI替代|
+|CI|通过|最终运行源码6420f93d1e8ac907b1afe493a12b570e1f04f0e4，Web quality run39961399282已completed/success；https://github.com/Shuyi1145/microwave-vision/actions/runs/39961399282 |
 
 网页复现：node scripts/verify-web.cjs <playwright模块路径> <生产预览URL>，复用本机Edge。
 模拟器复现：node scripts/verify-android.cjs <adb路径> <设备序号> <转发端口>。
@@ -56,3 +56,5 @@
 PR：https://github.com/Shuyi1145/microwave-vision/pull/1 。W1/W2/W3/W4审查：W1-REVIEW.md、W2-W4-REVIEW.md、W3-REVIEW.md。真实JSON与截图位于同目录，UTF-8可读说明位于docs/github。
 
 当前设备报告：Android11模拟器27项、Android15模拟器27项、小米13实体机25项，均completed=true、cleanupWarnings为空。手机中的80分条目是回归测试生成，不作为真实学习成效证据。
+
+最终运行源码：6420f93d1e8ac907b1afe493a12b570e1f04f0e4。后续验收文档提交不改变运行源码或交付包。完整A-F核对见COMPLETION-AUDIT.md。
