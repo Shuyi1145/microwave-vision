@@ -1,46 +1,55 @@
-# 核心交付 v1.0.1（2026-10-23）
+# 核心交付 v1.0.2（2026-10-23）
 
-任务：CORE-V1；分支codex/integration；起点4fc8b7a；公共合同v1.1。未修改WorkBuddy专属门户/课程布局/文案/QA目录。远端检查仅main与codex/integration，未发现可供集成的WorkBuddy成果分支。
+任务CORE-V1；分支codex/integration；开工基线4fc8b7a；公共合同v1.1。Git根目录以git rev-parse --show-toplevel为准，app仅为交付子目录。
 
 ## 安装与运行
 
-安装包：app/microwave-vision-1.0.1-debug.apk（约8.2MB）。应用标识com.microwavevision.learning，versionCode=2，versionName=1.0.1。调试签名用于参赛安装演示，不代表商店发布。
-使用adb install -r <APK路径>覆盖安装；手机也可打开APK按系统提示安装。清除应用数据或卸载会删除本地记录；升级安装应保留记录。安装不需要账号，运行不依赖开发服务器。
-网页版：npm.cmd ci，npm.cmd test，npm.cmd run build，npm.cmd run preview；以终端输出的本地地址访问。构建后的课程图片、KaTeX字体、脚本均在dist。本机已有依赖时可直接预览；首次安装依赖需要网络。
-安卓复现：准备JDK/SDK与Gradle后运行./build-android.ps1 -ToolRoot <工具目录>；不把local.properties、工具路径、缓存或签名私钥提交Git。
+- 安卓：app/microwave-vision-1.0.2-debug.apk，约8.2MB，应用标识com.microwavevision.learning，versionCode=3，versionName=1.0.2。
+- APK SHA256：B549AB505A98C28ACED595D39297B490C744C8D3AF115DDFC6DB64476D8317C3。
+- 调试签名供参赛安装演示，非商店发布。apksigner verify通过，v2=true；证书SHA256为15ceae66f1301c96796fc15c694f26eefef1c0012bd3662e23bd400439f2e1e2，与旧包一致。私钥未入Git。
+- 覆盖安装：adb install -r <APK路径>。手机也可直接打开APK安装。清除应用数据或卸载会删除记录；覆盖升级保留记录。小米13已实际安装本版本。
+- 网页备份：app/microwave-vision-1.0.2-web.zip。解压后通过本地HTTP静态服务器访问，不直接用file协议打开。
+- 源码运行：npm.cmd ci、npm.cmd test、npm.cmd run build、npm.cmd run preview；访问终端实际输出地址。本地依赖已准备时可离线预览，首次下载依赖需要网络。dist包含课程图片、字体和脚本，运行无需账号或开发服务器。
+- 安卓复现：准备JDK/SDK与Gradle后，执行./build-android.ps1 -ToolRoot <工具目录>。使用应用专用:app:assembleDebug任务；local.properties、个人工具路径、缓存和签名私钥不提交。
 
-## 修改
+## 实际修改
 
-1. 原五题与反馈抽至src/features/practice；首次答案锁定，过期事件不能推进，一轮稳定结果id，保存重试按id去重。
-2. 保存写入成功后才显示已保存；失败可见并用同一结果重试。保存失败时结果仅在当前页面，离开前必须重试。
-3. 保留mw-records-v1的date/score/topic，追加可选id/answers。历史空条目不再使全部记录丢失；损坏集合阻止覆盖并提示读取失败。最多保留50轮。
-4. 图片预览关闭后焦点返回原按钮。安卓保留应用标识与旧证书，版本递增。
-5. 物理实现未为重构而改写；增加五题解析参考测试：2+j1、0.4+j0.2、20%、VSWR=2.61803398875、向源lambda/8后0.2-j0.4。
+1. 诊断练习保留原五题及答案，抽为独立状态机：首次答案锁定、过期操作不能推进、一轮稳定结果编号。29项测试包括首次错误80分、重复提交、失败重试与历史记录兼容。
+2. 写入成功后才确认保存；失败可见且可用同一结果重试。保留mw-records-v1数组和date/score/topic字段，追加可选id/answers。旧数据空条目不再导致整批读取失败；损坏集合不静默覆盖。最多保留50轮。
+3. 图片预览关闭后焦点返回原按钮。动画每帧检查页面可见性及原生活动状态，后台不推进相位，前台恢复播放。
+4. 删除封面/内页的三项技术页脚和工作台重复存储页脚，精简内页重复副标题、徽标。必要的物理适用边界、存储失败与记录位置仍保留在对应功能中。
+5. 已审查并合入W3文档（7647688、b606478），保留其提交历史，选择性应用命名、按钮、单位间距等建议；不采纳统一保留三项标语、取消模式下标、混同不同物理提醒等建议。逐项决定见W3-REVIEW.md。未改WorkBuddy专属运行时目录，也未重写其报告。
+6. 物理公式未为重构而改写。新增独立五题解析参考：2+j1、0.4+j0.2、反射功率20%、VSWR=2.61803398875、向源lambda/8后0.2-j0.4。TEM“无截止”限于理想均匀双导体基模，保留高阶模式边界说明。
 
-## 验收证据
+## 逐项验收
 
-|项目|状态|证据|
+|验收项|状态|实际证据|
 |---|---|---|
-|全部单元测试|通过|npm.cmd test：5文件27项；包括原21项、状态机2项、存储3项及五题解析1项|
-|关键物理边界|通过|physics.test.ts：匹配、短路、开路、纯电抗、半波复现、波叠加；coursePhysics.test.ts：TE00/TM非法、截止、倏逝、导体壁；fieldMaps.test.ts：完整周期参考与零场|
-|生产构建|通过|npm.cmd run build；build-android.ps1内部再次执行生产构建|
-|网页核心回归|通过|web.json；三种宽度各12路由均无整页横向溢出/KaTeX错误；触屏答题、保存失败重试、刷新记录、预览及焦点，runtimeErrors=[]|
-|安卓构建|通过|:app:assembleDebug；90任务；最终构建BUILD SUCCESSFUL|
-|签名连续性|通过|apksigner verify：v2=true；证书SHA256为15ceae66f1301c96796fc15c694f26eefef1c0012bd3662e23bd400439f2e1e2，与旧包一致|
-|Android11模拟器|通过|android-11.json及android-11-records.png；覆盖安装、断网课程/图片、原生返回、触控、首次80分、单份保存、后台暂停、进程重启记录|
-|Android15模拟器|通过|android-15.json及android-15-records.png；同上；飞行模式开启且Wi-Fi关闭|
-|实体手机|未验证|小米13（Android16/API36）已连接ADB；首次安装被系统以INSTALL_FAILED_USER_RESTRICTED拒绝，待用户允许USB安装后复验|
-|远端CI|通过（首修复提交）|344278b的Web quality，run 39943205685，conclusion=success；最终提交需另核对|
-|Git差异格式|通过|git diff --check；最终提交前再次检查|
+|单元测试|通过|npm.cmd test：6文件29项；原21物理测试、五题解析1项、答题状态2项、存储3项、生命周期及返回2项|
+|物理边界|通过|physics.test.ts含匹配/开路/短路/纯电抗/半波复现及波叠加；coursePhysics.test.ts含TE00/TM非法、截止/倏逝、导体壁；fieldMaps.test.ts含固定周期参考及零场|
+|生产构建|通过|npm.cmd run build，由build-android.ps1再次执行；本轮:app:assembleDebug为BUILD SUCCESSFUL，90任务|
+|390/698/1024布局|通过|web.json：每种宽度12路由，无整页溢出或KaTeX错误；公式可局部滚动|
+|网页闭环|通过|触屏答题锁定、首错80分、失败提示和重试、刷新记录、预览开关及焦点恢复，runtimeErrors为空|
+|最新页脚要求|通过|web.json在全部36组路由/尺寸检查页脚无被删除的技术标语|
+|APK与签名|通过|上述签名/哈希；三台设备覆盖安装成功，应用内报告版本1.0.2|
+|Android11模拟器|通过|android-11.json和截图：飞行模式+Wi-Fi关闭，课程/图片、返回、原生圆图滑动、评分单份保存、后台暂停/前台恢复、进程重启记录|
+|Android15模拟器|通过|android-15.json和截图，同等检查；与Android11分开记录|
+|小米13实体机Android16|通过（限定范围）|physical-16.json和截图：安装、飞行模式离线课程/图片、首错80分/单份保存、后台暂停/恢复、强制结束后记录保留；原生返回与手指拖动由用户手工执行并明确确认，页面状态及数值变化由调试通道复核。后续纯文案更新沿用未改变交互的手工证据|
+|源码与PR|通过|小步提交至codex/integration；PR #1保留审阅，不自动合并main|
+|CI|见PR实时结果|344278b及e86e881的Web quality已success（run39943205685、39945810551）；最终新增提交推送后另外核对，不能用旧CI替代|
 
-浏览器复现：node scripts/verify-web.cjs <playwright模块路径> <生产预览URL>，使用本机Edge。安卓复现：node scripts/verify-android.cjs <adb路径> <测试设备序号> <本地转发端口>；脚本会短暂切换飞行模式/Wi-Fi并在结束时恢复，生成报告与截图。应使用测试设备，运行会新增一条80分练习记录。
+网页复现：node scripts/verify-web.cjs <playwright模块路径> <生产预览URL>，复用本机Edge。
+模拟器复现：node scripts/verify-android.cjs <adb路径> <设备序号> <转发端口>。
+实体复现：node scripts/verify-physical.cjs <adb路径> <设备序号> <转发端口>，需人工先验证两次原生返回并到达目录，随后等待实际手指拖动；resume参数只用于有既存明确手工证据且相应交互未改变的重测。脚本会新增80分练习记录，并短暂切换飞行模式、Wi-Fi及前后台，结束时恢复原网络开关。
 
-## 限制与回退
+## 限制、排查与回退
 
-未验证全机型兼容性、实体手机性能、商店发布；不宣称真实仪器测量、AI诊断、教学提升率或获奖保证。未引入OTA、账号或云同步。记录属于当前应用/浏览器本地，暂无跨设备迁移。
-生产构建存在Motion的use client忽略提示和主包超过500kB提示，不影响构建通过；性能验收不能以此替代实体机实测。
-后台初次检查过早采样失败；修正为确认document.hidden且等待切换稳定，再比较物理波形，随后通过。WebView进程重启后需重连调试端口，脚本加入等待。
-回退：源码可从4fc8b7a复现旧版；不要为回退清除用户记录。已安装versionCode=2时，旧版降级可能被系统阻止，优先将回退源码作为更高版本重新构建。证书私钥应由用户本地备份，不能进入仓库。
-PR：https://github.com/Shuyi1145/microwave-vision/pull/1 ，保留审阅，不自动合入main。
+- 仅验证上述两台模拟器与一台小米13；未做全机型、长期功耗/压力、商店发布验证，不承诺全面兼容或获奖。
+- 小米最初USB安装受限，用户允许USB安装后成功。系统禁止电脑注入按键与手势，因此采用用户手工操作并结合页面状态验证，没有绕过权限。
+- 初次后台采样出现不稳定，已增加逐帧可见性保护，最终三台设备暂停和恢复均实测通过。WebView重启需重新连接调试端口，脚本包含等待。
+- 构建仍有Motion的use client忽略提示及主包超过500kB提示，不影响构建成功；不把构建成功当作性能证明。
+- 保存失败的结果仅留当前页面，离开前需重试。记录仅在本机应用/浏览器；无跨设备同步、导出迁移或完整历史错题回看界面。无OTA、账号、云同步。
+- 回退可从4fc8b7a复现旧源码，但已装versionCode3时降级可能受系统限制，优先将回退源码重建为更高版本，不清除用户记录。备份同一签名证书，私钥不得上传。
+- 用户偏好已同步AGENTS.md、readme.md及UTF-8镜像；中文原件GB2312，源码ASCII/Unicode转义兼容GB2312。
 
-最终APK SHA256：F235CBB9B2EB6BCB13AF20F864E6FFA9CF130FB7B2C4CCA9D94A90F823A0F87E。网页版备份：app/microwave-vision-1.0.1-web.zip（解压后使用本地HTTP静态服务器访问，不以file协议直接打开）。
+PR：https://github.com/Shuyi1145/microwave-vision/pull/1 。W3审查：W3-REVIEW.md。真实JSON与截图位于同目录，UTF-8可读说明位于docs/github。

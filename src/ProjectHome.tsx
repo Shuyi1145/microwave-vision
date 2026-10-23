@@ -32,7 +32,7 @@ function OrbitArt({compact=false}:{compact?:boolean}){
 export function ProjectHome(){
  return <div className="portal landing"><header className="portal-header"><div className="portal-brand"><span className="portal-mark">{'\u25c9'}</span><div>{'\u5fae\u6ce2\u89c6\u754c'}</div></div><span className="portal-local">{'\u4ea4\u4e92\u5f0f\u5b66\u4e60 \u00b7 \u667a\u6167\u6559\u80b2\u4e0e\u79d1\u666e'}</span></header><main className="portal-main">
    <section className="portal-hero"><div className="hero-copy"><div className="hero-kicker"><span/>{'\u8ba9\u77e5\u8bc6\u53d1\u751f\u5728\u4ea4\u4e92\u4e4b\u95f4'}</div><h1>{'\u4ece\u4e00\u4e2a\u597d\u5947\uff0c'}<br/><em>{'\u5f00\u59cb\u63a2\u7d22\u3002'}</em></h1><p>{'\u62d6\u52a8\u4e00\u4e2a\u70b9\uff0c\u89c2\u5bdf\u4e00\u675f\u6ce2\u3002'}<br/>{'\u5728\u53ef\u89c6\u5316\u5b9e\u9a8c\u4e2d\u53d1\u73b0\u89c4\u5f8b\uff0c\u8ba9\u62bd\u8c61\u77e5\u8bc6\u6210\u4e3a\u76f4\u89c9\u3002'}</p><a className="hero-cta" href="#/hub">{'\u8fdb\u5165\u7f51\u7ad9'}<span aria-hidden="true">{'\u2192'}</span></a><div className="hero-footnote"><span>{'\u89c2\u5bdf \u00b7 \u601d\u8003 \u00b7 \u9a8c\u8bc1'}</span></div></div><div className="hero-art"><OrbitArt/></div></section>
-</main><footer className="portal-footer"><span>{'\u5fae\u6ce2\u89c6\u754c \u00b7 \u628a\u516c\u5f0f\u53d8\u6210\u76f4\u89c9'}</span><span>{'\u7406\u60f3\u6a21\u578b / \u672c\u5730\u8ba1\u7b97 / \u89c4\u5219\u8bca\u65ad'}</span></footer></div>;
+</main><footer className="portal-footer"><span>{'\u5fae\u6ce2\u89c6\u754c \u00b7 \u628a\u516c\u5f0f\u53d8\u6210\u76f4\u89c9'}</span></footer></div>;
 }
 
 export function LearningHub(){
@@ -40,7 +40,7 @@ export function LearningHub(){
    <section id="project-list" className="project-section" aria-labelledby="project-heading"><div className="project-heading"><div><h2 id="project-heading">{'\u9009\u62e9\u8981\u8fdb\u5165\u7684\u5b66\u4e60\u6a21\u5757'}<span>{'\u5fae\u6ce2\u89c6\u754c \u00b7 \u4ece\u63a2\u7d22\u5230\u7ec3\u4e60\uff0c\u6309\u4f60\u7684\u8282\u594f\u5f00\u59cb'}</span></h2></div><span className="project-count">{'04 \u4e2a\u5b66\u4e60\u5165\u53e3'}</span></div>
     <div className="module-grid">{learningEntries.map((entry,i)=><AnimatedLink className={`module-card module-${i}`} href={entry.path} key={entry.path} order={i}><div className="module-top"><span>{`0${i+1}`}</span><span className="module-icon" aria-hidden="true">{entry.icon}</span></div><h3>{entry.title}</h3><p>{entry.description}</p><div className="module-action">{entry.action}<span aria-hidden="true">{'\u2197'}</span></div></AnimatedLink>)}</div>
    </section>
-</main><footer className="portal-footer"><span>{'\u5fae\u6ce2\u89c6\u754c \u00b7 \u4ea4\u4e92\u5f0f\u5b66\u4e60\u7cfb\u7edf'}</span><span>{'\u8bb0\u5f55\u4fdd\u5b58\u5728\u5f53\u524d\u6d4f\u89c8\u5668'}</span></footer></div>;
+</main><footer className="portal-footer"><span>{'\u5fae\u6ce2\u89c6\u754c \u00b7 \u4ea4\u4e92\u5f0f\u5b66\u4e60\u7cfb\u7edf'}</span></footer></div>;
 }
 
 export function useProjectRoute(){

@@ -9,8 +9,10 @@ const base=process.argv[3]||'http://127.0.0.1:5174/';
  try{
   for(const width of [390,698,1024]){await page.setViewportSize({width,height:844});for(const route of ['#/','#/hub','#/labs','#/microwave','#/labs/line','#/labs/tem','#/labs/te','#/labs/tm','#/labs/matching','#/microwave/quiz','#/microwave/records','#/microwave/handbook']){
    await page.goto(base+route);await page.waitForTimeout(150);
+   const footer=await page.locator('footer').allTextContents();if(footer.some(t=>/\u7406\u60f3\u6a21\u578b|\u89c4\u5219\u8bca\u65ad|\u672c\u5730\u8bb0\u5f55/.test(t)))throw Error('decorative footer returned');
    const result=await page.evaluate(()=>({overflow:document.documentElement.scrollWidth>document.documentElement.clientWidth,formulaErrors:document.querySelectorAll('.katex-error').length}));report.routes.push({width,route,...result});if(result.overflow||result.formulaErrors)throw Error('layout/formula');
   }}
+  check('decorative footer removed on all routes',true);await page.goto(base+'#/labs/tem');check('TEM has no cutoff label',await page.locator('.course-stats').innerText().then(t=>t.includes('\u65e0\u622a\u6b62')));
   await page.setViewportSize({width:390,height:844});await page.goto(base+'#/microwave/quiz');
   await page.evaluate(()=>{window.originalSet=Storage.prototype.setItem;Storage.prototype.setItem=function(){throw Error('quota test');};});
   for(const [step,selected] of [2,1,1,1,2].entries()){

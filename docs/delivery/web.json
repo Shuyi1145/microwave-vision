@@ -219,6 +219,14 @@
   ],
   "checks": [
     {
+      "name": "decorative footer removed on all routes",
+      "value": true
+    },
+    {
+      "name": "TEM has no cutoff label",
+      "value": true
+    },
+    {
       "name": "answer locked 0",
       "value": true
     },

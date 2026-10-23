@@ -1,0 +1,26 @@
+{
+  "deviceType": "physical",
+  "model": "2211133C",
+  "serial": "redacted",
+  "android": "16",
+  "checks": [
+    {
+      "name": "offline course loaded",
+      "value": true
+    },
+    {
+      "name": "offline images",
+      "value": true
+    },
+    {
+      "name": "preview open",
+      "value": true
+    }
+  ],
+  "network": {
+    "airplane": "1",
+    "wifi": "0",
+    "data": "0"
+  },
+  "status": "partial initial attempt; blocked by INJECT_EVENTS permission; superseded by physical-16.json"
+}

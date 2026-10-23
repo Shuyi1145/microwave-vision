@@ -1,4 +1,5 @@
 {
+  "version": "1.0.2",
   "deviceType": "emulator",
   "model": "sdk_gphone64_x86_64",
   "serial": "emulator-5556",
@@ -69,11 +70,11 @@
       "value": true
     },
     {
-      "name": "records survive process restart",
+      "name": "foreground animation resumes",
       "value": true
     },
     {
-      "name": "foreground animation resumes after background",
+      "name": "records survive process restart",
       "value": true
     }
   ],
@@ -83,8 +84,8 @@
     "data": "0"
   },
   "result": {
-    "id": "practice-1792755138648-1-ytovaabvzug",
-    "date": "2026-10-23T11:32:20.247Z",
+    "id": "practice-1792755673924-1-2e8xkxpbocs",
+    "date": "2026-10-23T11:41:15.710Z",
     "score": 80,
     "topic": "阻抗 → 反射 → 功率 → 驻波 → 沿线移动",
     "answers": [
@@ -128,9 +129,9 @@
   "touch": {
     "bounds": {
       "x": 33.761905670166016,
-      "y": 572.8997802734375,
+      "y": 554.8764038085938,
       "w": 344.66668701171875,
-      "h": 344.6666259765625,
+      "h": 344.66668701171875,
       "dpr": 2.625
     },
     "x": 631,

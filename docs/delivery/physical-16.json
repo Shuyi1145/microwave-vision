@@ -1,4 +1,5 @@
 {
+  "version": "1.0.2",
   "deviceType": "physical",
   "model": "2211133C",
   "android": "16",
@@ -60,11 +61,11 @@
       "value": true
     },
     {
-      "name": "record survives process restart",
+      "name": "foreground animation resumes",
       "value": true
     },
     {
-      "name": "foreground animation resumes after background",
+      "name": "record survives process restart",
       "value": true
     }
   ],
@@ -73,8 +74,8 @@
     "wifi": "0"
   },
   "result": {
-    "id": "practice-1792755100167-1-z0t23hcgebj",
-    "date": "2026-10-23T11:31:41.735Z",
+    "id": "practice-1792755625435-1-uibjxjo9ggj",
+    "date": "2026-10-23T11:40:27.015Z",
     "score": 80,
     "topic": "阻抗 → 反射 → 功率 → 驻波 → 沿线移动",
     "answers": [
