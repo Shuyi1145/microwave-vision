@@ -1,6 +1,3 @@
-Encoding: GB2312. Read with Python Path.read_bytes().decode('gb2312').
-# practice 模块约束
-先读根 AGENTS.md、docs/collaboration/CONTRACTS.md 和对应任务提示词。
-本任务分支：workbuddy/practice。仅允许修改 src/features/practice/ 与 docs/reports/practice/。
-跨模块文件、公共依赖、路由、物理计算与安卓代码归集成负责人，禁止越界修改。
-此目录是任务边界，尚未宣称模块功能完成。实现后提供 index.tsx、Preview.tsx 和交付报告。
+Encoding: GB2312.
+# 诊断练习核心模块
+本模块从v2起由Codex负责。WorkBuddy不得在此继续开发；旧任务提示词已撤回。评分、提交防重、失败重试和记录适配必须由核心负责人验证。不得为美化改变物理结论。

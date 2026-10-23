@@ -1,0 +1,15 @@
+
+> microwave-vision@1.0.0 test
+> vitest run
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.0.5 [39m[90mE:/workbuddy-cache/2026-10-23-19-01-49/wb-w4/repo[39m
+
+ [32m✓[39m src/physics.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 24[2mms[22m[39m
+ [32m✓[39m src/coursePhysics.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 26[2mms[22m[39m
+ [32m✓[39m src/fieldMaps.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 51[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m3 passed[39m[22m[90m (3)[39m
+[2m      Tests [22m [1m[32m21 passed[39m[22m[90m (21)[39m
+[2m   Start at [22m 19:08:27
+[2m   Duration [22m 2.24s[2m (transform 82%, import 12%, tests 3%, worker 2%)[22m
