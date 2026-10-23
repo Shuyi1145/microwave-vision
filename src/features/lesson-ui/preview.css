@@ -1,0 +1,72 @@
+/* Development preview only. Not imported by src/features/lesson-ui/index.tsx. */
+
+.mv-lesson-ui-demo-caption{
+  margin:12px 0 0;
+  text-align:center;
+  font-size:12px;
+  line-height:1.8;
+  color:var(--mv-muted,#567183);
+}
+
+.mv-lesson-ui-demo{min-width:0}
+.mv-lesson-ui-demo-field{display:block;margin:0 0 16px;min-width:0}
+.mv-lesson-ui-demo-field:last-child{margin-bottom:0}
+.mv-lesson-ui-demo-field>span{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  align-items:baseline;
+  font-size:12px;
+  color:var(--mv-muted,#567183);
+}
+.mv-lesson-ui-demo-field>span>b{
+  margin-left:auto;
+  font:13px Consolas,monospace;
+  color:#12695f;
+}
+.mv-lesson-ui-demo-field>input[type="range"]{width:100%;margin:9px 0 0}
+.mv-lesson-ui-demo-field>select{
+  width:100%;
+  margin:9px 0 0;
+  padding:10px;
+  font-family:inherit;
+  font-size:13px;
+  color:#2c5a63;
+  background:#f8fafc;
+  border:1px solid var(--mv-border,#d5e4e8);
+  border-radius:8px;
+}
+.mv-lesson-ui-demo-note{
+  margin:0 0 16px;
+  padding:11px 13px;
+  font-size:12px;
+  line-height:1.8;
+  color:#5c7d72;
+  background:#eef7f4;
+  border-left:3px solid var(--mv-accent,#168d83);
+  border-radius:4px;
+}
+.mv-lesson-ui-demo-formula{
+  margin:0 0 14px;
+  padding:14px 10px;
+  text-align:center;
+  background:#f5f9fb;
+  border:1px solid #e2eaf0;
+  border-radius:8px;
+  overflow-x:auto;
+}
+
+.mv-lesson-ui-demo-console{
+  max-width:1180px;
+  margin:0 auto;
+  padding:16px;
+  font-family:"Microsoft YaHei","PingFang SC",sans-serif;
+  font-size:12px;
+  color:#33505f;
+  background:#ffffff;
+  border:1px dashed var(--mv-border,#d5e4e8);
+  border-radius:12px;
+}
+.mv-lesson-ui-demo-console>h2{margin:0 0 10px;font-size:14px;font-weight:600}
+.mv-lesson-ui-demo-console>ol{margin:0;padding-left:22px;line-height:1.9}
+.mv-lesson-ui-demo-console>ol:empty::after{content:"(no callback yet)"}

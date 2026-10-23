@@ -28,5 +28,7 @@ jobs:
           case "$TASK_BRANCH" in
             workbuddy/portal-ui) node scripts/check-boundaries.mjs portal ;;
             workbuddy/lesson-ui) node scripts/check-boundaries.mjs lesson-ui ;;
-            workbuddy/practice) node scripts/check-boundaries.mjs practice ;;
+            workbuddy/editorial) node scripts/check-boundaries.mjs editorial ;;
+            workbuddy/qa) node scripts/check-boundaries.mjs qa ;;
+            workbuddy/practice) echo "Practice task withdrawn; owned by Codex"; exit 1 ;;
           esac

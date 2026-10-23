@@ -1,4 +1,4 @@
-Encoding: UTF-8 mirror. Canonical project instructions are in /AGENTS.md (GB2312).
+Encoding: UTF-8 mirror. Canonical /AGENTS.md is GB2312.
 
 # 微波视界：代理开发约束与工程协作
 
@@ -65,16 +65,11 @@ Encoding: UTF-8 mirror. Canonical project instructions are in /AGENTS.md (GB2312
 安卓首版交付验证（2026-10-23）：最终使用 :app:assembleDebug 构建成功，调试签名校验通过。Android15模拟器已通过核心学习流程、圆图触控、原生返回、练习评分及本地记录、预览、断网访问；Android11模拟器已通过触控、返回、旧WebView预览兼容和离线课程访问。实体手机性能与其他版本兼容性未验证，不得写成真机全面通过。首次根任务下载失败已通过应用专用构建任务解决；复现脚本build-android.ps1已使用该任务。具体安装说明与APK随交付包提供。
 
 
-## WorkBuddy与Codex并行协作（2026-10-23用户明确要求）
-仓库https://github.com/Shuyi1145/microwave-vision，为私有仓库。用户授权把本工程基线与协作材料提交GitHub；禁止自动公开仓库。
-Goal：以能够演示和完赛为目标，基于可运行安卓首版并行完善门户、课程面板和诊断练习，保持功能独立、低耦合、可验收、可合并。
-必须读取docs/collaboration/PLAN.md、CONTRACTS.md、GITHUB.md，以及分配任务的详细提示词。完整启动提示词在WORKBUDDY-START.md，可直接给WorkBuddy模型。
-模块职责：W1仅src/features/portal和docs/reports/portal，分支workbuddy/portal-ui；W2仅src/features/lesson-ui和docs/reports/lesson-ui，分支workbuddy/lesson-ui；W3仅src/features/practice和docs/reports/practice，分支workbuddy/practice。Codex在codex/integration负责公共合同、原有入口、物理回归、依赖和安卓发布。
-每个模型使用独立克隆目录和端口，不共享工作目录切分支，不抢改main.tsx、Lessons.tsx、package.json/lock、android或根AGENTS.md。用户新的个性化要求由集成方统一同步根文件；各任务在自己的报告记录建议，避免同时编辑根文件冲突。
-任务只依赖已经创建的合同与预览，不依赖其他任务未来的组件。允许自己先交完整小PR。所有新模块必须默认导出约定组件并提供Preview.tsx，URL /collab-preview.html?module=portal|lesson-ui|practice。禁止跨features互相import。合同只读，公共接口变更由Codex统一发布。
-验收：独立预览与必要单测通过、390/698/1024截图、测试/构建通过、边界检查通过、交付报告、真实提交SHA和PR链接。不得把骨架、方案、未执行测试或仅推送当成完成。提交只包含本模块目录；禁止force push、直接向main开发、擅自合并他人PR。
-GitHub操作和认证处理详见GITHUB.md；没有gh可浏览器创建PR。认证失败保留本地提交，禁止把令牌放聊天/日志/仓库。签名密钥、本地SDK路径、个人代理、课件全集、构建缓存和APK不提交源码仓库。
-两个设计Skill已在Codex和WorkBuddy本机skills目录准备；仓库docs/skills保留参考副本。按需使用frontend-design和web-design-guidelines，保留浅色中文与减少动态效果要求。不要一次引入多个UI库，不因等新增依赖而停工。
-远程更新尚未实现；不把OTA作为本次并行任务前置条件，不在没有托管配置时臆造服务端接口。
-
-GitHub网页阅读：为保留本地GB2312约定同时方便在线阅读，docs/github/提供根说明和协作文档的UTF-8镜像；修改时先更新GB2312原件，再同步镜像。镜像不是另一套规则，源文件为准。
+## 最新职责分配 v2（2026-10-23，替代此前WorkBuddy任务分配）
+用户要求：由Codex执行最重要的核心工作，WorkBuddy承担简单、重复的辅助工作。Codex负责物理与可视化准确、诊断评分/记录、复杂触控/模态/返回/生命周期、共享接口、集成、测试、APK和签名发布；不再将这些当作美化交给WorkBuddy。
+WorkBuddy仅W1门户展示、W2纯布局、W3文案清点、W4回归证据。各自白名单、分支、Goal、验收和提示词见docs/collaboration/OWNERSHIP.md、ACCEPTANCE.md、WORKBUDDY-START.md及对应任务文件。旧workbuddy/practice不再开工，已有成果保留交Codex审查，不覆盖或删除。
+Codex可执行标准Goal提示词见docs/collaboration/CODEX-GOAL.md。任务只依赖已提交基线与合同；辅助成果未完成时保留原界面继续核心任务，不等待也不抢写他人目录。新的个性化需求由Codex统一更新根AGENTS、readme及镜像。
+仓库https://github.com/Shuyi1145/microwave-vision为私有，不擅自公开；Codex用codex/integration，WorkBuddy独立克隆与任务分支。实际工程根目录以git rev-parse --show-toplevel为准，当前app是子目录，不能因此另建嵌套工程。
+不改对方专属目录，不跨feature依赖，不并行改锁文件/公共入口。验收前不自动合main，不force push，不上传密钥/令牌/个人SDK路径/构建缓存。具体Git操作见GITHUB.md，认证失败保留本地提交，不索要明文令牌。
+已安装frontend-design与web-design-guidelines；Skill不能覆盖用户约定。中文原件GB2312，源代码ASCII/Unicode转义兼容GB2312，docs/github UTF-8镜像和第三方Skill保持原编码。修改原件后同步镜像。
+Goal逐项给实际证据；未测的实体手机/CI/功能不得声称通过。核心路线是选课→调参观察→答题反馈→保存回顾。OTA、账号、云同步后置，不阻塞完赛，不臆造外部接口。

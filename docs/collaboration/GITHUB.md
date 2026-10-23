@@ -15,7 +15,7 @@ npm.cmd ci
 npm.cmd run dev -- --port 5181
 ```
 已经有同名本地分支时先查 git status 和 git branch -vv，再切换现有分支，不使用 -B 强制重置。远端已有任务分支时用 git switch --track origin/workbuddy/portal-ui；不要从过期目录重新覆盖远端。
-另两任务分别使用目录 microwave-wb-lesson、microwave-wb-practice，分支 workbuddy/lesson-ui、workbuddy/practice，端口5182、5183。
+其他辅助任务：microwave-wb-lesson/workbuddy/lesson-ui/5182；microwave-wb-editorial/workbuddy/editorial；microwave-wb-qa/workbuddy/qa/5184。诊断练习归Codex，旧workbuddy/practice不得继续开工。
 启动后访问 /collab-preview.html?module=portal、lesson-ui 或 practice。独立预览已存在，不需要等待主页面接入。
 
 ## 验证后按所有权提交
@@ -49,3 +49,9 @@ push成功后在GitHub仓库打开 Compare & pull request，base=main，compare=自己的任务
 4. 依次完成门户接入、课程面板接入、练习结果适配。顺序只影响最终集成，不影响各任务开工。
 5. 再做全站路由、物理边界、离线资源、触屏、返回键与安卓模拟器回归，版本号递增；保留原应用ID与同一签名证书。
 6. 人工确认演示版后合入main；用标签标识版本。源码进Git，APK/录屏经确认用GitHub Release或单独交付，密钥不入Git。
+
+## v2规则的共同基线
+本次规则先提交codex/integration并以PR交main；在main尚未包含v2文件时，WorkBuddy先git fetch origin并读取origin/codex/integration的v2文件；新任务可从该集成提交创建分支，记录SHA。PR若包含尚未进入main的公共提交，标注基线依赖、保持未合并，先由集成方处理公共PR；不得为消除差异自动rebase/force push。已经在旧基线上开工的分支保留成果，与Codex协调后合入新的公共基线。
+辅助任务内容相互独立；主流程不依赖这些辅助任务完成即可继续。
+
+固定协作基线标签：collaboration-v2。main尚未含v2时，各WorkBuddy任务可从该标签创建独立分支，避免依赖持续变化的集成分支。先git fetch origin --tags并核对标签存在；没有标签不要编造SHA。越界检查在v2尚未合main时自动比较该标签，合main后改比较origin/main；也可显式传入实际基线SHA作为第三参数。不需等待其他功能PR完成。
