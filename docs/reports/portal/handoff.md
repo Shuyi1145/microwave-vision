@@ -48,7 +48,12 @@
 - 卡片入场动效采用挂载入场（`animate`）而非滚动触发（`whileInView`），以保证无头截图与加载即完整；进入视野提示可由集成方按需替换。
 - 预览 `?view=` 直达参数为开发预览便利，不属于产品接口。
 - 回退：删除 `src/features/portal/` 与 `docs/reports/portal/` 即可完全回退，不影响主站与其他任务。
-- 提交SHA：见下方 PR 提交记录；PR 链接：见 pr-body.md 末尾（由 push 后生成）。
+
+## 6. 提交与 PR
+- 任务分支：`workbuddy/portal-ui`（已推送远端）
+- 主要提交SHA：`645154ca4de110d3fd4de8a05f571dd5d82c1cba`（feat(portal): refine light Chinese learning portal (W1)）
+- PR链接：https://github.com/Shuyi1145/microwave-vision/pull/4 （base=main，保持未合并，待集成方先处理公共基线）
+- 基线说明：本分支基于 `collaboration-v2`（v2 未合入 main），PR 会携带集成方公共提交，已在 pr-body.md 标明依赖基线，公共提交非本人工作。
 
 ## 附：截图清单（`docs/reports/portal/screenshots/`）
 - `w1-390-landing.png` 手机封面（需求）
