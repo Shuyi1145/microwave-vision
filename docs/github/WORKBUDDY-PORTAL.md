@@ -1,19 +1,9 @@
-你是《微波视界》的独立模块工程师，请直接实施并交付，不停留在方案。
-先读取根AGENTS.md（GB2312）和docs/collaboration/CONTRACTS.md、GITHUB.md。PowerShell中可用：python -c "from pathlib import Path;print(Path('AGENTS.md').read_bytes().decode('gb2312'))"。若终端输出乱码，可写UTF-8临时副本供工具阅读，但不得把源文件误解码覆盖。新源代码使用ASCII加Unicode转义/JSX字符引用，属于GB2312兼容子集；自写中文文档GB2312。第三方Skill原始文件保持原编码只读。
-先确认你位于独立克隆和正确任务分支、工作区无他人修改。不要在Codex主工作区D:\GPTProject\数媒直接开工。用户已授权该任务实现、测试、提交并推送自己的任务分支；不授权force push、公开私有仓库、自动合并main、上传密钥或改其他任务文件。认证失败保留本地提交并说明，不索要明文令牌。
-使用docs/skills/frontend-design/SKILL.md指导设计、docs/skills/web-design-guidelines/SKILL.md审查交互。项目既定浅色中文、物理准确和无远端资源优先于Skill通用建议。不等待其他模块，不请求尚不存在的后端API。新增依赖、公共合同和入口改动写入交付报告，由Codex集成；不得自行改package.json/lock/共享文件。
-至少先给简短设计说明，再实现，再用浏览器截图审查；没有浏览器能力时写明未验证，但仍完成不依赖它的代码和测试。截图要真实，不使用合成界面替代运行结果。
+你是WorkBuddy辅助任务执行者。先读AGENTS.md及PLAN/OWNERSHIP/ACCEPTANCE/CONTRACTS/GITHUB，再直接实施。自写源代码ASCII加Unicode转义（GB2312兼容），中文原件GB2312；第三方文件只读不改编码。用独立clone和自己的分支，遵循WORKBUDDY-START.md的v2基线选择，不等待其他任务。不得改公共入口/合同/依赖/物理/评分/存储/安卓；不要自行安装运行时UI库。
 
-你的任务W1：门户与选课视觉。分支workbuddy/portal-ui，独立目录D:\GPTProject\microwave-wb-portal；端口5181。可改src/features/portal/**、docs/reports/portal/**，其他文件只读。
-Goal：将当前入口提升为清晰、有微波科学辨识度的浅色中文学习门户，保留既有信息架构。
-实际入口参考src/ProjectHome.tsx、Lessons.tsx中的LabCatalog；不要修改或复制其路由Hook。组件使用PortalProps，view分别显示封面/工作台/目录，topics从props取。实现默认导出PortalFeature。Preview默认导出组件，提供开发专用view切换和回调结果，启动URL /collab-preview.html?module=portal。
-设计要求：封面只有“进入网站”操作，品牌不再添加第二导航按钮；工作台固定实验室、诊断练习、学习记录、知识手册四入口；实验室有6课程。不要在目录放PDF来源、页码、模式对照或教学正文。不出现装饰英文，不用黑背景、大片霓虹、鼠标跟随粒子或持续转动。用少量圆图/波形科学构图形成记忆点，不把编号当课程顺序。统一文字层级，正文可读，触控目标至少44px，手机不能靠hover发现操作。可用现有Motion和本地SVG，禁止远端字体/图片和直接引入整套新UI依赖。
-验收清单：
-1. 预览三种view，导航回调的路由逐个准确；onNavigate不触发时组件不自行修改location。
-2. 390/698/1024宽度均无横向溢出，长中文标题不遮挡图标/按钮，封面进入操作在合理位置可见。
-3. 键盘Tab焦点可见、Enter激活，减少动态效果时没有装饰位移；没有自动播放干扰阅读。
-4. 使用mv-portal根类限定CSS；没有改任何物理图形或其他模块。
-5. 截图至少封面手机、工作台桌面、目录手机三张，存docs/reports/portal/；明确预览和产品入口尚待集成。
-6. node scripts/check-boundaries.mjs portal 通过。测试新增以导航回调/入口完整性为主，不写仅复刻实现的脆弱测试。
+任务W1：门户展示美化；分支workbuddy/portal-ui；目录microwave-wb-portal；端口5181。只改src/features/portal/**和docs/reports/portal/**。
+Goal：以既定数据、结构和导航回调改善三种view的排版、留白、字级、卡片一致性，不设计复杂业务。
+实现index.tsx默认导出PortalFeature，使用已存在PortalProps；实现Preview.tsx默认导出预览，地址/collab-preview.html?module=portal。参考ProjectHome.tsx和LabCatalog，仅仿照既有内容，不改原文件。view/导航由外部控制，点击只调用onNavigate，不改全局路由、storage或数据。
+landing封面仅一个进入网站操作；hub固定实验室/诊断练习/学习记录/知识手册4入口；catalog用props的6课程。不要新增侧栏、页码、课件来源banner、模式对比表、装饰英文、黑色/霓虹或持续粒子。视觉可参考frontend-design；只用已有Motion或本地SVG，禁止引入新依赖。CSS以mv-portal限定。
+按ACCEPTANCE的W1项目验收；至少提供手机封面、桌面工作台、手机目录真实截图。凡需要公共路由或物理支持的请求写建议交Codex，不越界实现。只实现展示与回调，不接管全局状态。
 
-交付必须包含：你的目录中index.tsx与Preview.tsx；docs/reports/对应模块/handoff.md（Goal、验收逐条结果、截图说明、文件列表、公共改动建议、未验证项）；pr-body.md。执行npm.cmd test、npm.cmd run build、git diff --check、边界检查。只stage自己两个目录，检查后commit，再git push -u origin 自己分支。按GITHUB.md创建PR或给出创建链接、真实SHA。完成后停止，不去接手其他模块，不自动合并main。不要说“已完成全部联合”，只报告自己模块。若遇问题，先解决本模块能解决的内容，确实需要外部信息时只问具体缺项。
+完成后：按ACCEPTANCE.md写真实逐项证据、文件清单和未验证项，存本任务docs/reports目录的handoff.md；写pr-body.md。执行现有npm test/build及git diff --check，运行node scripts/check-boundaries.mjs对应任务ID。只stage自己的两个目录，检查暂存差异，再commit/push并创建PR，不force push、不合main、不接其他任务。没有浏览器或其他环境能力时完成可做部分并明确未测，不伪造证据。
