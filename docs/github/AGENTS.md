@@ -1,4 +1,4 @@
-Encoding: UTF-8 mirror. Canonical /AGENTS.md is GB2312.
+Encoding: GB2312. Read with Python Path.read_bytes().decode('gb2312') before acting.
 
 # 微波视界：代理开发约束与工程协作
 
@@ -73,3 +73,6 @@ Codex可执行标准Goal提示词见docs/collaboration/CODEX-GOAL.md。任务只
 不改对方专属目录，不跨feature依赖，不并行改锁文件/公共入口。验收前不自动合main，不force push，不上传密钥/令牌/个人SDK路径/构建缓存。具体Git操作见GITHUB.md，认证失败保留本地提交，不索要明文令牌。
 已安装frontend-design与web-design-guidelines；Skill不能覆盖用户约定。中文原件GB2312，源代码ASCII/Unicode转义兼容GB2312，docs/github UTF-8镜像和第三方Skill保持原编码。修改原件后同步镜像。
 Goal逐项给实际证据；未测的实体手机/CI/功能不得声称通过。核心路线是选课→调参观察→答题反馈→保存回顾。OTA、账号、云同步后置，不阻塞完赛，不臆造外部接口。
+
+
+核心交付迭代（2026-10-23）：诊断练习由Codex接管并保留原五题。首次答题锁定、稳定结果编号、重复提交防护、保存成功后确认及失败原结果重试已经实现；历史mw-records-v1记录兼容，损坏集合不静默覆盖。保存未成功时结果仅留当前页面，离开前需重试。本轮验收证据与APK说明统一维护于docs/delivery；模拟器与实体手机结论分别记录，不用历史证据代替本轮验证。

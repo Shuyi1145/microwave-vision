@@ -10,3 +10,5 @@ describe('lossless transmission line reference cases',()=>{
  it('waves satisfy short/open voltage boundary conditions',()=>{for(const t of [0,.13,.25,.57])expect(wave({re:-1,im:0},0,t).total).toBeCloseTo(0);expect(wave({re:1,im:0},0,0).total).toBe(2);});
  it('envelope matches local reflection coefficient',()=>{const g={re:.4,im:.2};for(const s of [0,.125,.25,.37]){const local=rotate(g,s);expect(wave(g,s,0).envelope**2).toBeCloseTo((1+local.re)**2+local.im**2);}});
 });
+
+it("five-question reference matches independent rectangular values",()=>{const g=reflection(normalize(100,50,50));expect(magnitude(g)**2).toBeCloseTo(.2,12);expect(vswr(g)).toBeCloseTo(2.61803398875,10);const shifted=rotate(g,.125);expect(shifted.re).toBeCloseTo(.2,12);expect(shifted.im).toBeCloseTo(-.4,12);});

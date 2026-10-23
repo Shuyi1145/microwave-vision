@@ -1,5 +1,5 @@
 import type {ReactNode} from 'react';
-export const CONTRACT_VERSION='1.0' as const;
+export const CONTRACT_VERSION='1.1' as const;
 export type TopicId='smith'|'line'|'tem'|'te'|'tm'|'matching';
 export type AppRoute='#/'|'#/hub'|'#/labs'|'#/microwave'|'#/microwave/quiz'|'#/microwave/records'|'#/microwave/handbook'|`#/labs/${Exclude<TopicId,'smith'>}`;
 export interface TopicSummary {readonly id:TopicId;readonly path:AppRoute;readonly title:string;readonly tag:string;readonly description:string;readonly goal:string;}
@@ -8,4 +8,4 @@ export interface LessonLayoutProps {readonly title:string;readonly summary:strin
 export type ErrorCategory='normalization'|'complex-division'|'amplitude-power'|'vswr'|'rotation';
 export interface AnswerResult {readonly questionId:string;readonly selected:number;readonly correct:number;readonly firstCorrect:boolean;readonly category:ErrorCategory;}
 export interface PracticeCompletion {readonly id:string;readonly completedAt:string;readonly score:number;readonly topic:string;readonly answers:readonly AnswerResult[];}
-export interface PracticeProps {readonly onComplete:(result:PracticeCompletion)=>void;readonly onNavigate:(route:AppRoute)=>void;}
+export interface PracticeProps {readonly onComplete:(result:PracticeCompletion)=>boolean;readonly onNavigate:(route:AppRoute)=>void;}

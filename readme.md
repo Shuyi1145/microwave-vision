@@ -144,3 +144,6 @@ W4 回归证据：workbuddy/qa；独立克隆microwave-wb-qa；端口5184。只改docs/reports/q
 
 标准Codex Goal见docs/collaboration/CODEX-GOAL.md，统一验收见ACCEPTANCE.md。WorkBuddy启动词及四份辅助任务书在同目录；旧练习任务已撤回。独立预览仍用/collab-preview.html?module=portal或lesson-ui。原PracticeProps合同保留给Codex，不作本轮破坏性修改。
 本次是任务和规则更新，未实现新模块或生成新APK。测试与源码基线以实际运行记录为准。
+
+
+核心交付迭代（2026-10-23）：诊断练习由Codex接管并保留原五题。首次答题锁定、稳定结果编号、重复提交防护、保存成功后确认及失败原结果重试已经实现；历史mw-records-v1记录兼容，损坏集合不静默覆盖。保存未成功时结果仅留当前页面，离开前需重试。本轮验收证据与APK说明统一维护于docs/delivery；模拟器与实体手机结论分别记录，不用历史证据代替本轮验证。
