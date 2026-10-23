@@ -64,8 +64,8 @@ node scripts/check-boundaries.mjs qa -> PASS qa: 48 changed paths stay inside ta
 - 风险：本交付只有文档与截图，不影响任何运行时代码，风险为零
 - 未做范围：安卓构建/模拟器/实体机/断网/CI 均在 Codex 范围，本报告不越权下结论
 - 回退办法：删除 docs/reports/qa 下本次新增内容即可，不涉及共享文件
-- 提交 SHA：（提交后回填）
-- PR 链接：（创建后回填）
+- 提交 SHA：dca36c523d5fa8fbdc6178cd4b1842bf833e740b（首个提交）+ 回填说明提交（见分支顶端）
+- PR 链接：https://github.com/Shuyi1145/microwave-vision/pull/2（base=main，保持未合并，等待集成方先处理公共提交）
 
 ## 附录：逐页测量（scrollWidth == clientWidth 即无横向溢出）
 
