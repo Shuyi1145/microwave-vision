@@ -7,6 +7,22 @@ const base=process.argv[3]||'http://127.0.0.1:5174/';
  const report={routes:[],checks:[],runtimeErrors:[]};page.on('pageerror',e=>report.runtimeErrors.push(e.message));
  const check=(name,value)=>{report.checks.push({name,value});if(!value)throw Error(name);};
  try{
+
+  for(const width of [390,698,1024]){
+   await page.setViewportSize({width,height:844});await page.goto(base+'#/');await page.locator('.mv-cta').waitFor();
+   check('W1 single entry '+width,await page.locator('.mv-portal a').count()===1&&await page.locator('.mv-cta').getAttribute('href')==='#/hub');
+   await page.keyboard.press('Tab');check('W1 entry keyboard focus '+width,await page.evaluate(()=>document.activeElement.classList.contains('mv-cta')));
+   await page.screenshot({path:'docs/delivery/portal-'+width+'-landing.png',fullPage:true});await page.keyboard.press('Enter');await page.locator('.mv-grid-hub').waitFor();
+   check('W1 four hub links '+width,await page.locator('.mv-grid-hub .mv-card-link').count()===4);
+   await page.screenshot({path:'docs/delivery/portal-'+width+'-hub.png',fullPage:true});await page.locator('.mv-grid-hub .mv-card-link').first().tap();await page.locator('.mv-grid-topic').waitFor();
+   check('W1 six topic links '+width,await page.locator('.mv-grid-topic .mv-card-link').count()===6);
+   check('W1 catalog has no source banner '+width,await page.locator('.mv-grid-topic').innerText().then(t=>!t.includes('.pdf')));
+   await page.screenshot({path:'docs/delivery/portal-'+width+'-catalog.png',fullPage:true});await page.locator('.mv-grid-topic .mv-card-link').first().tap();await page.locator('.smith').waitFor();check('W1 smith route '+width,page.url().endsWith('#/microwave'));
+  }
+  for(const route of ['#/microwave/quiz','#/microwave/records','#/microwave/handbook']){
+   await page.goto(base+'#/hub');await page.locator('.mv-grid-hub').waitFor();await page.locator('a[href="'+route+'"]').click();check('W1 hub route '+route,page.url().endsWith(route));
+  }
+  await page.goto(base+'#/hub');await page.locator('.mv-grid-hub').waitFor();const [nativeTab]=await Promise.all([context.waitForEvent('page'),page.locator('a[href="#/microwave/handbook"]').click({button:'middle'})]);await nativeTab.waitForLoadState();check('W1 native new tab',nativeTab.url().endsWith('#/microwave/handbook'));await nativeTab.close();
   for(const width of [390,698,1024]){await page.setViewportSize({width,height:844});for(const route of ['#/','#/hub','#/labs','#/microwave','#/labs/line','#/labs/tem','#/labs/te','#/labs/tm','#/labs/matching','#/microwave/quiz','#/microwave/records','#/microwave/handbook']){
    await page.goto(base+route);await page.waitForTimeout(150);
    const footer=await page.locator('footer').allTextContents();if(footer.some(t=>/\u7406\u60f3\u6a21\u578b|\u89c4\u5219\u8bca\u65ad|\u672c\u5730\u8bb0\u5f55/.test(t)))throw Error('decorative footer returned');

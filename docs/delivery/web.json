@@ -219,6 +219,94 @@
   ],
   "checks": [
     {
+      "name": "W1 single entry 390",
+      "value": true
+    },
+    {
+      "name": "W1 entry keyboard focus 390",
+      "value": true
+    },
+    {
+      "name": "W1 four hub links 390",
+      "value": true
+    },
+    {
+      "name": "W1 six topic links 390",
+      "value": true
+    },
+    {
+      "name": "W1 catalog has no source banner 390",
+      "value": true
+    },
+    {
+      "name": "W1 smith route 390",
+      "value": true
+    },
+    {
+      "name": "W1 single entry 698",
+      "value": true
+    },
+    {
+      "name": "W1 entry keyboard focus 698",
+      "value": true
+    },
+    {
+      "name": "W1 four hub links 698",
+      "value": true
+    },
+    {
+      "name": "W1 six topic links 698",
+      "value": true
+    },
+    {
+      "name": "W1 catalog has no source banner 698",
+      "value": true
+    },
+    {
+      "name": "W1 smith route 698",
+      "value": true
+    },
+    {
+      "name": "W1 single entry 1024",
+      "value": true
+    },
+    {
+      "name": "W1 entry keyboard focus 1024",
+      "value": true
+    },
+    {
+      "name": "W1 four hub links 1024",
+      "value": true
+    },
+    {
+      "name": "W1 six topic links 1024",
+      "value": true
+    },
+    {
+      "name": "W1 catalog has no source banner 1024",
+      "value": true
+    },
+    {
+      "name": "W1 smith route 1024",
+      "value": true
+    },
+    {
+      "name": "W1 hub route #/microwave/quiz",
+      "value": true
+    },
+    {
+      "name": "W1 hub route #/microwave/records",
+      "value": true
+    },
+    {
+      "name": "W1 hub route #/microwave/handbook",
+      "value": true
+    },
+    {
+      "name": "W1 native new tab",
+      "value": true
+    },
+    {
       "name": "decorative footer removed on all routes",
       "value": true
     },

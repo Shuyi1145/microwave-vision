@@ -1,0 +1,10 @@
+{
+  "version": "1.0.4",
+  "versionCode": 5,
+  "apk": "microwave-vision-1.0.4-debug.apk",
+  "bytes": 8230521,
+  "sha256": "8525f5e59d774745969118f85364557b8cacf8870b9d61f18ebb7edaded627e4",
+  "bundledWebFiles": 70,
+  "allDistFilesMatchApk": true,
+  "signerCertificateSha256": "15ceae66f1301c96796fc15c694f26eefef1c0012bd3662e23bd400439f2e1e2"
+}

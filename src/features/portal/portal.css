@@ -86,3 +86,14 @@
 @media (prefers-reduced-motion:reduce){
  .mv-portal button,.mv-portal .mv-card,.mv-portal .mv-card::before,.mv-preview-tab{transition:none}
 }
+
+/* Accepted integration fixes: navigation remains native and touch-accessible. */
+.mv-portal a{touch-action:manipulation}
+.mv-portal a:focus-visible{outline:2px solid var(--mv-accent,#168d83);outline-offset:3px}
+.mv-portal .mv-back,.mv-portal .mv-cta{min-height:44px}
+.mv-portal .mv-portal-top{height:auto;min-height:76px}
+.mv-portal .mv-hero-title{margin-top:16px}
+.mv-portal .mv-hero-lede{margin-top:18px}
+.mv-portal .mv-hero-note{margin-top:16px}
+.mv-portal .mv-intro-text{margin-top:10px}
+.mv-portal h1[tabindex="-1"]:focus{outline:2px solid #9bc9c1;outline-offset:5px;border-radius:4px}

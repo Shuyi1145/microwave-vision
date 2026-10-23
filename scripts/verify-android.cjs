@@ -14,6 +14,11 @@ async function connect(){const pid=run('shell','pidof','com.microwavevision.lear
  const wifi=run('shell','settings','get','global','wifi_on'),data=run('shell','settings','get','global','mobile_data');
  try{
   run('shell','cmd','connectivity','airplane-mode','enable');run('shell','svc','wifi','disable');run('shell','svc','data','disable');await pause(600);report.network={airplane:run('shell','settings','get','global','airplane_mode_on'),wifi:run('shell','settings','get','global','wifi_on'),data:run('shell','settings','get','global','mobile_data')};
+
+  await route('#/');check('W1 offline single entry',await evaluate("document.querySelectorAll('.mv-portal a').length===1&&!!document.querySelector('.mv-cta')"));
+  await evaluate("document.querySelector('.mv-cta').click()");await pause(200);check('W1 offline hub',await evaluate("location.hash==='#/hub'&&document.querySelectorAll('.mv-grid-hub .mv-card-link').length===4"));
+  await evaluate("document.querySelector('.mv-grid-hub a[href=\"#/labs\"]').click()");await pause(200);check('W1 offline six courses',await evaluate("location.hash==='#/labs'&&document.querySelectorAll('.mv-grid-topic .mv-card-link').length===6"));
+  await evaluate("document.querySelector('.mv-grid-topic a[href=\"#/labs/te\"]').click()");await pause(200);check('W1 offline course navigation',await evaluate("location.hash==='#/labs/te'"));
   await route('#/labs/te');check('offline course loaded',await evaluate("document.body.innerText.includes('TE10')&&document.querySelectorAll('canvas').length>0"));
 
   const lessonPanel="document.querySelector('.mv-lesson-ui__panel')";
@@ -48,8 +53,10 @@ async function connect(){const pid=run('shell','pidof','com.microwavevision.lear
   run('shell','screencap','-p','/sdcard/mv-evidence.png');run('pull','/sdcard/mv-evidence.png','docs/delivery/android-'+report.android+'-records.png');
   c.ws.close();run('shell','am','force-stop','com.microwavevision.learning');run('shell','am','start','-n','com.microwavevision.learning/.MainActivity');await pause(2500);c=await connect();await route('#/microwave/records');
   check('records survive process restart',await evaluate(`JSON.parse(localStorage.getItem('mw-records-v1'))[0].id===${JSON.stringify(records[0].id)}`));
- }finally{
-  if(airplane!=='1')run('shell','cmd','connectivity','airplane-mode','disable');if(wifi==='1')run('shell','svc','wifi','enable');if(data==='1')run('shell','svc','data','enable');c.ws.close();fs.writeFileSync('docs/delivery/android-'+report.android+'.json',JSON.stringify(report,null,2));
+ }catch(error){report.failure=String(error.message).replaceAll(serial,'[device]');throw error;}finally{
+  c.ws.close();const cleanup=[];const restore=(...args)=>{try{run(...args);}catch(error){cleanup.push(String(error.message).replaceAll(serial,'[device]'));}};
+  if(airplane!=='1')restore('shell','cmd','connectivity','airplane-mode','disable');if(wifi==='1')restore('shell','svc','wifi','enable');if(data==='1')restore('shell','svc','data','enable');
+  report.cleanupWarnings=cleanup;report.completed=report.checks.some(v=>v.name.includes('process restart')&&v.value)&&!report.failure;fs.writeFileSync('docs/delivery/android-'+report.android+'.json',JSON.stringify(report,null,2));if(cleanup.length)process.exitCode=1;
  }
  console.log(JSON.stringify(report));
 })().catch(e=>{console.error(e);process.exitCode=1;});

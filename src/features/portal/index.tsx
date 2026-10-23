@@ -1,4 +1,5 @@
 /// <reference types="vite/client" />
+import type {MouseEvent} from 'react';
 import {m,useReducedMotion} from 'motion/react';
 import type {AppRoute,PortalProps,TopicSummary} from '../../collaboration/contracts';
 import './portal.css';
@@ -40,6 +41,7 @@ function HeroArt(){
 
 export default function PortalFeature({view,topics,onNavigate}:PortalProps){
  const reduced=useReducedMotion();
+ const navigate=(route:AppRoute)=>(event:MouseEvent<HTMLAnchorElement>)=>{if(event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;event.preventDefault();onNavigate(route);};
  const enter=()=>reduced?{opacity:1}:{opacity:0,y:14};
  if(view==='landing')return <div className="mv-portal mv-view mv-view-landing">
   <header className="mv-portal-top">
@@ -52,9 +54,9 @@ export default function PortalFeature({view,topics,onNavigate}:PortalProps){
      <p className="mv-kicker"><span className="mv-kicker-dot" aria-hidden="true"/>&#x8ba9;&#x77e5;&#x8bc6;&#x53d1;&#x751f;&#x5728;&#x4ea4;&#x4e92;&#x4e4b;&#x95f4;</p>
      <h1 className="mv-hero-title">&#x4ece;&#x4e00;&#x4e2a;&#x597d;&#x5947;&#xff0c;<br/><em>&#x5f00;&#x59cb;&#x63a2;&#x7d22;&#x3002;</em></h1>
      <p className="mv-hero-lede">&#x62d6;&#x52a8;&#x4e00;&#x4e2a;&#x70b9;&#xff0c;&#x89c2;&#x5bdf;&#x4e00;&#x675f;&#x6ce2;&#x3002;<br/>&#x5728;&#x53ef;&#x89c6;&#x5316;&#x5b9e;&#x9a8c;&#x4e2d;&#x53d1;&#x73b0;&#x89c4;&#x5f8b;&#xff0c;&#x8ba9;&#x62bd;&#x8c61;&#x77e5;&#x8bc6;&#x6210;&#x4e3a;&#x76f4;&#x89c9;&#x3002;</p>
-     <m.button className="mv-cta" type="button" onClick={()=>onNavigate('#/hub')} initial={reduced?false:{opacity:0,y:10}} animate={{opacity:1,y:0}} transition={{duration:.38,delay:reduced?0:.16,ease:'easeOut'}} whileTap={reduced?undefined:{scale:.985}}>
+     <m.a className="mv-cta" href="#/hub" onClick={navigate('#/hub')} initial={reduced?false:{opacity:0,y:10}} animate={{opacity:1,y:0}} transition={{duration:.38,delay:reduced?0:.16,ease:'easeOut'}} whileTap={reduced?undefined:{scale:.985}}>
       &#x8fdb;&#x5165;&#x7f51;&#x7ad9;<span className="mv-cta-arrow" aria-hidden="true">&#x2192;</span>
-     </m.button>
+     </m.a>
      <p className="mv-hero-note">&#x89c2;&#x5bdf; &#xb7; &#x601d;&#x8003; &#xb7; &#x9a8c;&#x8bc1;</p>
     </m.div>
     <m.div className="mv-hero-art" initial={reduced?false:{opacity:0,scale:.97}} animate={{opacity:1,scale:1}} transition={{duration:.5,ease:'easeOut'}}>
@@ -62,14 +64,14 @@ export default function PortalFeature({view,topics,onNavigate}:PortalProps){
     </m.div>
    </section>
   </main>
-  <footer className="mv-portal-foot"><span>&#x5fae;&#x6ce2;&#x89c6;&#x754c; &#xb7; &#x628a;&#x516c;&#x5f0f;&#x53d8;&#x6210;&#x76f4;&#x89c2;</span></footer>
+  <footer className="mv-portal-foot"><span>&#x5fae;&#x6ce2;&#x89c6;&#x754c; &#xb7; &#x628a;&#x516c;&#x5f0f;&#x53d8;&#x6210;&#x76f4;&#x89c9;</span></footer>
  </div>;
 
  return <div className={`mv-portal mv-view mv-view-${view}`}>
   <header className="mv-portal-top">
-   <button className="mv-back" type="button" onClick={()=>onNavigate(view==='catalog'?'#/hub':'#/')}>
-    <span className="mv-back-arrow" aria-hidden="true">&#x2190;</span>{view==='catalog'?'\u8fd4\u56de\u5de5\u4f5c\u53f0':'\u8fd4\u56de\u5c01\u9762'}
-   </button>
+   <a className="mv-back" href={view==='catalog'?'#/hub':'#/'} onClick={navigate(view==='catalog'?'#/hub':'#/')}>
+    <span className="mv-back-arrow" aria-hidden="true">&#x2190;</span>{view==='catalog'?'\u8fd4\u56de\u5b66\u4e60\u5de5\u4f5c\u53f0':'\u8fd4\u56de\u5c01\u9762'}
+   </a>
    <div className="mv-portal-brand"><span className="mv-portal-mark" aria-hidden="true">&#x25c9;</span><span>&#x5fae;&#x6ce2;&#x89c6;&#x754c;</span></div>
    <p className="mv-portal-slogan">{view==='catalog'?'\u8bfe\u7a0b\u5b9e\u9a8c\u5ba4 \u00b7 \u5148\u9009\u8bfe\uff0c\u518d\u5c55\u5f00':'\u9009\u62e9\u4e00\u4e2a\u6a21\u5757\uff0c\u5f00\u59cb\u5b66\u4e60'}</p>
   </header>
@@ -85,7 +87,7 @@ export default function PortalFeature({view,topics,onNavigate}:PortalProps){
     {hubEntries.map((entry,i)=><m.li className="mv-card mv-card-hub" key={entry.path} initial={reduced?false:{opacity:0,y:16}} animate={{opacity:1,y:0}} transition={{duration:.36,delay:reduced?0:Math.min(i,3)*.05,ease:'easeOut'}}>
      <span className="mv-card-index" aria-hidden="true">{`0${i+1}`}</span>
      <span className="mv-card-icon" aria-hidden="true">{entry.icon}</span>
-     <h2 className="mv-card-title"><button className="mv-card-link" type="button" onClick={()=>onNavigate(entry.path)}>{entry.title}</button></h2>
+     <h2 className="mv-card-title"><a className="mv-card-link" href={entry.path} onClick={navigate(entry.path)}>{entry.title}</a></h2>
      <p className="mv-card-text">{entry.description}</p>
      <span className="mv-card-action" aria-hidden="true">{entry.action}<span className="mv-card-arrow">&#x2197;</span></span>
     </m.li>)}
@@ -94,7 +96,7 @@ export default function PortalFeature({view,topics,onNavigate}:PortalProps){
      <span className="mv-card-index" aria-hidden="true">{`0${i+1}`}</span>
      <span className="mv-card-icon" aria-hidden="true">{topicIcons[topic.id]}</span>
      <p className="mv-card-tag">{topic.tag}</p>
-     <h2 className="mv-card-title"><button className="mv-card-link" type="button" onClick={()=>onNavigate(topic.path)}>{topic.title}</button></h2>
+     <h2 className="mv-card-title"><a className="mv-card-link" href={topic.path} onClick={navigate(topic.path)}>{topic.title}</a></h2>
      <p className="mv-card-text">{topic.description}</p>
      <p className="mv-card-goal"><span className="mv-card-goal-mark" aria-hidden="true">&#x25ce;</span>{topic.goal}</p>
      <span className="mv-card-action" aria-hidden="true">&#x5c55;&#x5f00;&#x5b66;&#x4e60;<span className="mv-card-arrow">&#x2197;</span></span>

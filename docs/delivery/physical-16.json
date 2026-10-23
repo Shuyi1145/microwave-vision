@@ -1,11 +1,27 @@
 {
-  "version": "1.0.3",
+  "version": "1.0.4",
   "deviceType": "physical",
   "model": "2211133C",
   "android": "16",
   "checks": [
     {
       "name": "manual native returns (prior user confirmation)",
+      "value": true
+    },
+    {
+      "name": "W1 offline single entry",
+      "value": true
+    },
+    {
+      "name": "W1 offline hub",
+      "value": true
+    },
+    {
+      "name": "W1 offline six courses",
+      "value": true
+    },
+    {
+      "name": "W1 offline course navigation",
       "value": true
     },
     {
@@ -94,8 +110,8 @@
     "wifi": "0"
   },
   "result": {
-    "id": "practice-1792756565429-1-z2ezcor7rya",
-    "date": "2026-10-23T11:56:07.024Z",
+    "id": "practice-1792759363759-1-z8ofgpaxsm",
+    "date": "2026-10-23T12:42:45.344Z",
     "score": 80,
     "topic": "阻抗 → 反射 → 功率 → 驻波 → 沿线移动",
     "answers": [
@@ -135,5 +151,7 @@
         "category": "rotation"
       }
     ]
-  }
+  },
+  "cleanupWarnings": [],
+  "completed": true
 }

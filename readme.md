@@ -142,14 +142,17 @@ W4 回归证据：workbuddy/qa；独立克隆microwave-wb-qa；端口5184。只改docs/reports/q
 原workbuddy/practice任务已撤回，src/features/practice归Codex；已有旧分支不要删除或覆盖，保留提交并报告，由Codex评估复用。当前检查远端只有main和codex/integration，未发现已推送WorkBuddy任务分支；不能据此断言其他机器没有本地工作。
 所有WorkBuddy任务只依赖已提交基线，不依赖其他任务成果。未完成不阻止Codex使用原界面交付。专属目录不得交叉import；公共合同只读。变更建议写各自报告，不同时编辑根AGENTS和package-lock。
 
-标准Codex Goal见docs/collaboration/CODEX-GOAL.md，统一验收见ACCEPTANCE.md。WorkBuddy启动词及四份辅助任务书在同目录；旧练习任务已撤回。独立预览仍用/collab-preview.html?module=portal或lesson-ui。原PracticeProps合同保留给Codex，不作本轮破坏性修改。
-本次是任务和规则更新，未实现新模块或生成新APK。测试与源码基线以实际运行记录为准。
+标准Codex Goal见docs/collaboration/CODEX-GOAL.md，统一验收见ACCEPTANCE.md。WorkBuddy启动词及四份辅助任务书在同目录；旧练习任务已撤回。独立预览仍用/collab-preview.html?module=portal或lesson-ui。PracticeProps由Codex维护，当前合同v1.2；保存回调返回实际持久化是否成功。
+collaboration-v2基线阶段仅更新协作规则；当前已完成的功能与APK以核心交付现状和RELEASE.md为准。
 
+## 核心交付现状（2026-10-23）
 
-核心交付迭代（2026-10-23）：诊断练习由Codex接管并保留原五题。首次答题锁定、稳定结果编号、重复提交防护、保存成功后确认及失败原结果重试已经实现；历史mw-records-v1记录兼容，损坏集合不静默覆盖。保存未成功时结果仅留当前页面，离开前需重试。本轮验收证据与APK说明统一维护于docs/delivery；模拟器与实体手机结论分别记录，不用历史证据代替本轮验证。
+当前交付版本1.0.4/versionCode5，合同v1.2，同一应用标识与调试签名。W1门户、W2真实课程布局、W3选择性文案、W4回归证据已审查集成；必要的内部接管及取舍分别记录于docs/delivery/W1-REVIEW.md、W2-W4-REVIEW.md、W3-REVIEW.md，不改写辅助原始报告。
 
-新版交付：v1.0.1（versionCode=2）保留原应用标识与调试证书；诊断保存重试和预览焦点修复已纳入APK。逐项证据及安装/回退说明见docs/delivery/RELEASE.md（GB2312）和docs/github/RELEASE.md（UTF-8镜像）。实体手机状态以报告后续实测更新为准。
+诊断练习保留原五题：首次答案锁定、稳定结果编号、重复保存防护、写入成功后确认、失败原结果重试；兼容mw-records-v1历史记录，损坏集合不静默覆盖。未保存结果离开当前页面前必须重试。
 
-用户最新界面偏好（2026-10-23）：删除页脚“理想模型/规则诊断/本地记录”及同类三项技术标语，不用其他装饰性标语替代；存储位置与物理边界保留在对应功能的必要说明中。W3文案清点已审查并选择性应用，逐条取舍见docs/delivery/W3-REVIEW.md；不盲目采纳取消下标或合并不同物理提醒的建议。当前交付版本1.0.2/versionCode3，保留应用标识和签名连续性。
+删除页脚“理想模型/规则诊断/本地记录”及同类三项技术标语，不换成其他装饰性标语。必要的存储位置、物理边界放在对应功能中。保留标准下标及各图特定物理提醒。页面导航保留原生链接和键盘行为。
 
-W2/W4集成（2026-10-23）：W2布局已接入五门真实课程，手机参数内联折叠、桌面并排，播放及物理仍由核心控制；静态匹配课隐藏无作用播放。W4作为旧基线证据保留，favicon和主题焦点修复后按当前版本重验。审查与必要接管见docs/delivery/W2-W4-REVIEW.md。当前版本1.0.3/versionCode4，合同v1.2；同一应用标识及签名，未自动合main。
+W2手机参数内联折叠、桌面并排，播放与物理由核心控制；静态匹配课隐藏无作用播放。W4图标和焦点问题已修复。动画后台不推进相位，恢复前台继续播放。
+
+安装、运行、逐项设备证据及已知限制见docs/delivery/RELEASE.md（GB2312）和docs/github/RELEASE.md（UTF-8镜像），以最终APK同版本报告为准。模拟器与小米13实体机分开记录，不用历史测试代替当前验证，不声称全机型兼容。不自动合入main，不上传密钥或缓存。

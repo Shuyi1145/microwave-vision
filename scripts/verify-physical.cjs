@@ -12,6 +12,11 @@ async function connect(){const pid=run('shell','pidof','com.microwavevision.lear
  try{
   if(process.argv[5]!=='resume')check('manual native returns (user confirmed) end at catalog',await evaluate("location.hash==='#/labs'"));else{const previous=JSON.parse(fs.readFileSync('docs/delivery/physical-16.json'));check('manual native returns (prior user confirmation)',previous.checks.some(v=>v.name.startsWith('manual native returns')&&v.value));}
   run('shell','cmd','connectivity','airplane-mode','enable');run('shell','svc','wifi','disable');run('shell','svc','data','disable');await pause(600);report.network={airplane:run('shell','settings','get','global','airplane_mode_on'),wifi:run('shell','settings','get','global','wifi_on')};
+
+  await route('#/');check('W1 offline single entry',await evaluate("document.querySelectorAll('.mv-portal a').length===1&&!!document.querySelector('.mv-cta')"));
+  await evaluate("document.querySelector('.mv-cta').click()");await pause(200);check('W1 offline hub',await evaluate("location.hash==='#/hub'&&document.querySelectorAll('.mv-grid-hub .mv-card-link').length===4"));
+  await evaluate("document.querySelector('.mv-grid-hub a[href=\"#/labs\"]').click()");await pause(200);check('W1 offline six courses',await evaluate("location.hash==='#/labs'&&document.querySelectorAll('.mv-grid-topic .mv-card-link').length===6"));
+  await evaluate("document.querySelector('.mv-grid-topic a[href=\"#/labs/te\"]').click()");await pause(200);check('W1 offline course navigation',await evaluate("location.hash==='#/labs/te'"));
   await route('#/labs/te');check('offline course',await evaluate("document.body.innerText.includes('TE10')&&document.querySelectorAll('canvas').length>0"));
 
   const lessonPanel="document.querySelector('.mv-lesson-ui__panel')";
@@ -31,6 +36,10 @@ async function connect(){const pid=run('shell','pidof','com.microwavevision.lear
   run('shell','am','start','-a','android.intent.action.MAIN','-c','android.intent.category.HOME');await pause(2500);check('background hidden',await evaluate('document.hidden'));await pause(500);const stopped=await evaluate("JSON.stringify([...document.querySelectorAll('.waves path')].map(p=>p.getAttribute('d')))");await pause(500);check('background paused',stopped===await evaluate("JSON.stringify([...document.querySelectorAll('.waves path')].map(p=>p.getAttribute('d')))"));
   run('shell','am','start','-n','com.microwavevision.learning/.MainActivity');await pause(600);const resumed=await evaluate("document.querySelector('.waves svg').innerHTML");await pause(600);check('foreground animation resumes',resumed!==await evaluate("document.querySelector('.waves svg').innerHTML"));await route('#/microwave/records');run('shell','screencap','-p','/sdcard/mv-evidence.png');run('pull','/sdcard/mv-evidence.png','docs/delivery/physical-16-records.png');
   c.ws.close();run('shell','am','force-stop','com.microwavevision.learning');run('shell','am','start','-n','com.microwavevision.learning/.MainActivity');await pause(2500);c=await connect();await route('#/microwave/records');check('record survives process restart',await evaluate('JSON.parse(localStorage.getItem("mw-records-v1"))[0].id==='+JSON.stringify(records[0].id)));
- }finally{if(airplane!=='1')run('shell','cmd','connectivity','airplane-mode','disable');if(wifi==='1')run('shell','svc','wifi','enable');if(data==='1')run('shell','svc','data','enable');c.ws.close();fs.writeFileSync('docs/delivery/physical-16.json',JSON.stringify(report,null,2));}
+ }catch(error){report.failure=String(error.message).replaceAll(serial,'[device]');throw error;}finally{
+  c.ws.close();const cleanup=[];const restore=(...args)=>{try{run(...args);}catch(error){cleanup.push(String(error.message).replaceAll(serial,'[device]'));}};
+  if(airplane!=='1')restore('shell','cmd','connectivity','airplane-mode','disable');if(wifi==='1')restore('shell','svc','wifi','enable');if(data==='1')restore('shell','svc','data','enable');
+  report.cleanupWarnings=cleanup;report.completed=report.checks.some(v=>v.name.includes('process restart')&&v.value)&&!report.failure;fs.writeFileSync('docs/delivery/physical-16.json',JSON.stringify(report,null,2));if(cleanup.length)process.exitCode=1;
+ }
  console.log(JSON.stringify(report));
 })().catch(e=>{console.error(e.message);process.exitCode=1;});

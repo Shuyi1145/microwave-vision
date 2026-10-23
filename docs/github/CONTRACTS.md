@@ -1,7 +1,7 @@
 # 并行接口约定 v1.2（接口不变，职责按v2）
 这些类型已实际创建于 src/collaboration/contracts.ts，不是现有远端API。不存在服务端接口，不得自行臆造URL。
 
-门户：src/features/portal/index.tsx 默认导出 PortalFeature，props为PortalProps。view取landing/hub/catalog；topics由外部传入；所有导航调用onNavigate，不在组件中操作全局location。封面只允许一个进入网站操作；workbench四模块；catalog六课程，保留既定路由。
+门户：src/features/portal/index.tsx 默认导出 PortalFeature，props为PortalProps。view取landing/hub/catalog；topics由外部传入；常规点击调用onNavigate，不在组件中操作全局location；保留真实href及中键/修饰键的原生链接行为。封面只允许一个进入网站操作；workbench四模块；catalog六课程，保留既定路由。
 
 课程UI：src/features/lesson-ui/index.tsx 默认导出 LessonLayout，props为LessonLayoutProps。图形、参数、正文都通过ReactNode槽传入；playing和onPlayingChange由宿主管理。模块只管理面板展开等局部显示状态，不引入物理计时器，不重算场量，不复制课程算法。不根据图形DOM反推参数。
 
