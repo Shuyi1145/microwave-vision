@@ -13,6 +13,13 @@ async function connect(){const pid=run('shell','pidof','com.microwavevision.lear
   if(process.argv[5]!=='resume')check('manual native returns (user confirmed) end at catalog',await evaluate("location.hash==='#/labs'"));else{const previous=JSON.parse(fs.readFileSync('docs/delivery/physical-16.json'));check('manual native returns (prior user confirmation)',previous.checks.some(v=>v.name.startsWith('manual native returns')&&v.value));}
   run('shell','cmd','connectivity','airplane-mode','enable');run('shell','svc','wifi','disable');run('shell','svc','data','disable');await pause(600);report.network={airplane:run('shell','settings','get','global','airplane_mode_on'),wifi:run('shell','settings','get','global','wifi_on')};
   await route('#/labs/te');check('offline course',await evaluate("document.body.innerText.includes('TE10')&&document.querySelectorAll('canvas').length>0"));
+
+  const lessonPanel="document.querySelector('.mv-lesson-ui__panel')";
+  check('W2 mobile params initially collapsed',await evaluate(lessonPanel+'.open===false'));
+  await evaluate(lessonPanel+".querySelector('summary').click()");await pause(150);check('W2 params expand',await evaluate(lessonPanel+'.open'));
+  await evaluate("document.querySelector('.frequency-presets button').click()");await pause(150);check('W2 cutoff parameter linked',await evaluate("document.querySelector('.mode-status').dataset.state==='evanescent'"));
+  await evaluate("document.querySelector('.frequency-presets button:last-child').click()");await pause(150);check('W2 propagation parameter linked',await evaluate("document.querySelector('.mode-status').dataset.state==='propagating'"));
+  const playBefore=await evaluate("document.querySelector('.mv-lesson-ui__play').getAttribute('aria-pressed')");await evaluate("document.querySelector('.mv-lesson-ui__play').click()");await pause(150);check('W2 playback controlled',playBefore!==await evaluate("document.querySelector('.mv-lesson-ui__play').getAttribute('aria-pressed')"));
   await evaluate("Promise.all([...document.images].map(i=>{i.loading='eager';return i.decode().catch(()=>{});} ))");check('offline images',await evaluate('[...document.images].every(i=>i.complete&&i.naturalWidth>0)'));
   await route('#/microwave/quiz');const before=await evaluate("JSON.parse(localStorage.getItem('mw-records-v1')||'[]').length");
   for(const [step,selected] of [2,1,1,1,2].entries()){await evaluate('document.querySelectorAll(".choices button")['+selected+'].click()');await pause(100);check('locked '+step,await evaluate("[...document.querySelectorAll('.choices button')].every(b=>b.disabled)"));await evaluate("document.querySelector('.feedback button').click()");await pause(100);}

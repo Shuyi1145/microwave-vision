@@ -1,5 +1,5 @@
 {
-  "version": "1.0.2",
+  "version": "1.0.3",
   "deviceType": "physical",
   "model": "2211133C",
   "android": "16",
@@ -10,6 +10,26 @@
     },
     {
       "name": "offline course",
+      "value": true
+    },
+    {
+      "name": "W2 mobile params initially collapsed",
+      "value": true
+    },
+    {
+      "name": "W2 params expand",
+      "value": true
+    },
+    {
+      "name": "W2 cutoff parameter linked",
+      "value": true
+    },
+    {
+      "name": "W2 propagation parameter linked",
+      "value": true
+    },
+    {
+      "name": "W2 playback controlled",
       "value": true
     },
     {
@@ -74,8 +94,8 @@
     "wifi": "0"
   },
   "result": {
-    "id": "practice-1792755625435-1-uibjxjo9ggj",
-    "date": "2026-10-23T11:40:27.015Z",
+    "id": "practice-1792756565429-1-z2ezcor7rya",
+    "date": "2026-10-23T11:56:07.024Z",
     "score": 80,
     "topic": "阻抗 → 反射 → 功率 → 驻波 → 沿线移动",
     "answers": [

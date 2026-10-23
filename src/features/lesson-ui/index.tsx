@@ -18,6 +18,7 @@ export default function LessonLayout({
   figure,
   controls,
   explanation,
+  playbackAvailable=true,
   playing,
   onPlayingChange
 }:LessonLayoutProps){
@@ -26,14 +27,14 @@ export default function LessonLayout({
     <div className="mv-lesson-ui">
       <div className="mv-lesson-ui__inner">
         <div className="mv-lesson-ui__bar">
-          <button type="button" className="mv-lesson-ui__back" onClick={onBack}>{'\u8fd4\u56de\u8bfe\u7a0b\u76ee\u5f55'}</button>
+          <button type="button" className="mv-lesson-ui__back" onClick={onBack}>{'\u8fd4\u56de\u5b9e\u9a8c\u5ba4\u76ee\u5f55'}</button>
           <span className="mv-lesson-ui__state" data-playing={playing}>{playing?'\u6f14\u793a\u8fdb\u884c\u4e2d':'\u6f14\u793a\u5df2\u6682\u505c'}</span>
-          <button
+          {playbackAvailable&&<button
             type="button"
             className="mv-lesson-ui__play"
             aria-pressed={playing}
             onClick={()=>onPlayingChange(!playing)}
-          >{playing?'\u6682\u505c\u6f14\u793a':'\u64ad\u653e\u6f14\u793a'}</button>
+          >{playing?'\u6682\u505c\u52a8\u753b':'\u64ad\u653e\u52a8\u753b'}</button>}
         </div>
         <header className="mv-lesson-ui__heading">
           <h1 className="mv-lesson-ui__title">{title}</h1>

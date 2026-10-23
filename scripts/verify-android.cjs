@@ -15,6 +15,13 @@ async function connect(){const pid=run('shell','pidof','com.microwavevision.lear
  try{
   run('shell','cmd','connectivity','airplane-mode','enable');run('shell','svc','wifi','disable');run('shell','svc','data','disable');await pause(600);report.network={airplane:run('shell','settings','get','global','airplane_mode_on'),wifi:run('shell','settings','get','global','wifi_on'),data:run('shell','settings','get','global','mobile_data')};
   await route('#/labs/te');check('offline course loaded',await evaluate("document.body.innerText.includes('TE10')&&document.querySelectorAll('canvas').length>0"));
+
+  const lessonPanel="document.querySelector('.mv-lesson-ui__panel')";
+  check('W2 mobile params initially collapsed',await evaluate(lessonPanel+'.open===false'));
+  await evaluate(lessonPanel+".querySelector('summary').click()");await pause(150);check('W2 params expand',await evaluate(lessonPanel+'.open'));
+  await evaluate("document.querySelector('.frequency-presets button').click()");await pause(150);check('W2 cutoff parameter linked',await evaluate("document.querySelector('.mode-status').dataset.state==='evanescent'"));
+  await evaluate("document.querySelector('.frequency-presets button:last-child').click()");await pause(150);check('W2 propagation parameter linked',await evaluate("document.querySelector('.mode-status').dataset.state==='propagating'"));
+  const playBefore=await evaluate("document.querySelector('.mv-lesson-ui__play').getAttribute('aria-pressed')");await evaluate("document.querySelector('.mv-lesson-ui__play').click()");await pause(150);check('W2 playback controlled',playBefore!==await evaluate("document.querySelector('.mv-lesson-ui__play').getAttribute('aria-pressed')"));
   await evaluate("Promise.all([...document.images].map(i=>{i.loading='eager';return i.decode().catch(()=>{});} ))");check('offline images',await evaluate('[...document.images].every(i=>i.complete&&i.naturalWidth>0)'));
   await evaluate("document.querySelector('.reference-grid button').click()");await pause(250);check('preview open',await evaluate("!!document.querySelector('dialog[open]')"));run('shell','input','keyevent','4');await pause(350);check('native back closes preview',await evaluate("!document.querySelector('dialog[open]')&&location.hash==='#/labs/te'"));
   run('shell','input','keyevent','4');await pause(350);check('native back to catalog',await evaluate("location.hash==='#/labs'"));

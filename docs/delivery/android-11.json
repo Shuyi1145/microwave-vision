@@ -1,5 +1,5 @@
 {
-  "version": "1.0.2",
+  "version": "1.0.3",
   "deviceType": "emulator",
   "model": "sdk_gphone_x86_64",
   "serial": "emulator-5554",
@@ -7,6 +7,26 @@
   "checks": [
     {
       "name": "offline course loaded",
+      "value": true
+    },
+    {
+      "name": "W2 mobile params initially collapsed",
+      "value": true
+    },
+    {
+      "name": "W2 params expand",
+      "value": true
+    },
+    {
+      "name": "W2 cutoff parameter linked",
+      "value": true
+    },
+    {
+      "name": "W2 propagation parameter linked",
+      "value": true
+    },
+    {
+      "name": "W2 playback controlled",
       "value": true
     },
     {
@@ -84,8 +104,8 @@
     "data": "0"
   },
   "result": {
-    "id": "practice-1792755654572-1-dxlstedplx",
-    "date": "2026-10-23T11:40:59.378Z",
+    "id": "practice-1792756597221-1-tvgap2kh01",
+    "date": "2026-10-23T11:56:40.493Z",
     "score": 80,
     "topic": "阻抗 → 反射 → 功率 → 驻波 → 沿线移动",
     "answers": [
@@ -129,9 +149,9 @@
   "touch": {
     "bounds": {
       "x": 34,
-      "y": 536.047607421875,
+      "y": 540.51904296875,
       "w": 344.19049072265625,
-      "h": 344.19049072265625,
+      "h": 344.1904296875,
       "dpr": 2.625
     },
     "x": 631,

@@ -227,6 +227,114 @@
       "value": true
     },
     {
+      "name": "W2 default panel 390",
+      "value": true
+    },
+    {
+      "name": "W2 real cutoff controls 390",
+      "value": true
+    },
+    {
+      "name": "W2 real propagation controls 390",
+      "value": true
+    },
+    {
+      "name": "W2 host playback initially reduced 390",
+      "value": true
+    },
+    {
+      "name": "W2 host play callback 390",
+      "value": true
+    },
+    {
+      "name": "W2 touch target 390",
+      "value": true
+    },
+    {
+      "name": "W2 keyboard collapse 390",
+      "value": true
+    },
+    {
+      "name": "W2 heading stacks 390",
+      "value": true
+    },
+    {
+      "name": "W2 default panel 698",
+      "value": true
+    },
+    {
+      "name": "W2 real cutoff controls 698",
+      "value": true
+    },
+    {
+      "name": "W2 real propagation controls 698",
+      "value": true
+    },
+    {
+      "name": "W2 host playback initially reduced 698",
+      "value": true
+    },
+    {
+      "name": "W2 host play callback 698",
+      "value": true
+    },
+    {
+      "name": "W2 touch target 698",
+      "value": true
+    },
+    {
+      "name": "W2 keyboard collapse 698",
+      "value": true
+    },
+    {
+      "name": "W2 heading stacks 698",
+      "value": true
+    },
+    {
+      "name": "W2 default panel 1024",
+      "value": true
+    },
+    {
+      "name": "W2 real cutoff controls 1024",
+      "value": true
+    },
+    {
+      "name": "W2 real propagation controls 1024",
+      "value": true
+    },
+    {
+      "name": "W2 host playback initially reduced 1024",
+      "value": true
+    },
+    {
+      "name": "W2 host play callback 1024",
+      "value": true
+    },
+    {
+      "name": "W2 touch target 1024",
+      "value": true
+    },
+    {
+      "name": "W2 keyboard collapse 1024",
+      "value": true
+    },
+    {
+      "name": "W2 heading stacks 1024",
+      "value": true
+    },
+    {
+      "name": "static lesson has no fake playback",
+      "value": true
+    },
+    {
+      "name": "W4 favicon 200",
+      "value": true
+    },
+    {
+      "name": "W4 route focus is themed",
+      "value": true
+    },
+    {
       "name": "answer locked 0",
       "value": true
     },

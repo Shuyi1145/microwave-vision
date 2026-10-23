@@ -5,3 +5,11 @@
 @media(max-width:850px){.lesson-split{grid-template-columns:1fr}.course-header{height:68px}.course-header>small{display:none}.lesson-controls{display:block}.course-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.course-intro h1{font-size:25px}.course-source{font-size:10px}.course-header>span{font-size:10px}.mode-status{font-size:10px;flex-wrap:wrap}.mode-status span{font-size:11px}.topic-top{font-size:7px}.topic-card{padding:20px}}
 @media(max-width:600px){.course-header,.course-main{padding-left:16px;padding-right:16px}.course-header{gap:10px}.course-header .home-return{font-size:9px;padding:8px}.course-header>span{font-size:9px}.course-intro{padding-top:28px}.course-intro h1{font-size:23px;line-height:1.6}.course-intro p{font-size:10px}.topic-grid{grid-template-columns:1fr;gap:15px}.topic-card p{min-height:0}.topic-card h2{font-size:20px}.topic-card footer{font-size:9px}.course-source{display:block;padding:13px}.course-source b{display:block;margin-bottom:5px}.course-source small{display:block;margin-top:6px}.lesson-panel{padding:17px}.lesson-panel h2{font-size:16px}.animation-bar{gap:9px;padding:10px}.animation-bar label{gap:6px;font-size:8px}.animation-bar button{font-size:9px;padding:8px}.lesson-panel>svg text{font-size:12px}.quick-check{padding:20px}.quick-check h3{font-size:15px}.quick-check>div{display:grid;gap:8px}.quick-check button{text-align:left;font-size:10px}.course-equation{font-size:11px}.course-stat>strong{font-size:15px}.lesson-boundary p{font-size:9px}.topic-card:hover{transform:none}.mode-comparison h2{font-size:16px}.mode-comparison table{font-size:10px;min-width:520px}}
 @media(prefers-reduced-motion:reduce){.topic-card{transition:none}}
+
+/* Host adapter for W2 slots: preserve content scale and touch targets. */
+.course-app .mv-lesson-ui__figure>.lesson-panel,.course-app .mv-lesson-ui__panel-body>.lesson-panel{border:0;padding:0;box-shadow:none}
+.course-app .mv-lesson-ui__state{display:none}
+.course-app .mv-lesson-ui__back,.course-app .mv-lesson-ui__play{min-height:44px}
+.course-app h1[tabindex="-1"]:focus{outline:2px solid #9bc9c1;outline-offset:5px;border-radius:4px}
+
+.course-app .mv-lesson-ui__heading{display:block;height:auto;padding:0;border:0}
