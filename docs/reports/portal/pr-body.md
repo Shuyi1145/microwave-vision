@@ -22,7 +22,7 @@
 - `npm test` → `Tests 21 passed (21)`（3 个测试文件）
 - `npm run build` → `tsc --noEmit` 无错误；`vite build` 成功（仅既有 chunk 体积提示）
 - `git diff --check` → 无输出
-- `node scripts/check-boundaries.mjs portal` → `PASS portal: 16 changed paths stay inside task ownership.`
+- `node scripts/check-boundaries.mjs portal` → `PASS portal: 18 changed paths stay inside task ownership.`
 - 390/698/1024 溢出检查（Edge 无头 + CDP 设备仿真）：三视图均 `scrollWidth == innerWidth`，无横向滚动。
 
 ## 截图（docs/reports/portal/screenshots/）

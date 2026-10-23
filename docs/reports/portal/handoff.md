@@ -15,7 +15,7 @@
 - `docs/reports/portal/handoff.md`、`docs/reports/portal/pr-body.md`（本报告与 PR 正文）
 - `docs/reports/portal/screenshots/*.png`（13 张真实截图证据）
 
-- 是否越界：否。`node scripts/check-boundaries.mjs portal` → `PASS portal: 16 changed paths stay inside task ownership.`
+- 是否越界：否。`node scripts/check-boundaries.mjs portal` → `PASS portal: 18 changed paths stay inside task ownership.`
 - 是否需要公共改动：否。
 - 未接入主站：本模块尚未接入主站路由/入口。接入 `main.tsx` / `ProjectHome.tsx` / `Lessons.tsx` 由 Codex 集成负责。当前请通过独立预览 `/collab-preview.html?module=portal` 查看。
 
@@ -35,7 +35,7 @@
 | npm test | 通过 | `Test Files 3 passed (3)`，`Tests 21 passed (21)` |
 | npm run build | 通过 | `tsc --noEmit` 无错误；`vite build` 成功（仅有既有的 chunk 体积提示） |
 | git diff --check | 通过 | 无输出（无空白错误） |
-| check-boundaries portal | 通过 | `PASS portal: 16 changed paths stay inside task ownership.` |
+| check-boundaries portal | 通过 | `PASS portal: 18 changed paths stay inside task ownership.` |
 
 ## 4. 实际测试环境
 - 浏览器：本机 Microsoft Edge（Chromium），无头模式 + CDP 设备指标仿真（deviceScaleFactor=1）。
