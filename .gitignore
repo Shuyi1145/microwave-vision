@@ -18,3 +18,6 @@ test-results/
 local.properties
 
 app/work/
+
+# Local delivery archives
+app/*.zip

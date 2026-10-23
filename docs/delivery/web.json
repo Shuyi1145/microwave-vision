@@ -1,0 +1,271 @@
+{
+  "routes": [
+    {
+      "width": 390,
+      "route": "#/",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 390,
+      "route": "#/hub",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 390,
+      "route": "#/labs",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 390,
+      "route": "#/microwave",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 390,
+      "route": "#/labs/line",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 390,
+      "route": "#/labs/tem",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 390,
+      "route": "#/labs/te",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 390,
+      "route": "#/labs/tm",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 390,
+      "route": "#/labs/matching",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 390,
+      "route": "#/microwave/quiz",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 390,
+      "route": "#/microwave/records",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 390,
+      "route": "#/microwave/handbook",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 698,
+      "route": "#/",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 698,
+      "route": "#/hub",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 698,
+      "route": "#/labs",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 698,
+      "route": "#/microwave",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 698,
+      "route": "#/labs/line",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 698,
+      "route": "#/labs/tem",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 698,
+      "route": "#/labs/te",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 698,
+      "route": "#/labs/tm",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 698,
+      "route": "#/labs/matching",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 698,
+      "route": "#/microwave/quiz",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 698,
+      "route": "#/microwave/records",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 698,
+      "route": "#/microwave/handbook",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 1024,
+      "route": "#/",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 1024,
+      "route": "#/hub",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 1024,
+      "route": "#/labs",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 1024,
+      "route": "#/microwave",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 1024,
+      "route": "#/labs/line",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 1024,
+      "route": "#/labs/tem",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 1024,
+      "route": "#/labs/te",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 1024,
+      "route": "#/labs/tm",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 1024,
+      "route": "#/labs/matching",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 1024,
+      "route": "#/microwave/quiz",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 1024,
+      "route": "#/microwave/records",
+      "overflow": false,
+      "formulaErrors": 0
+    },
+    {
+      "width": 1024,
+      "route": "#/microwave/handbook",
+      "overflow": false,
+      "formulaErrors": 0
+    }
+  ],
+  "checks": [
+    {
+      "name": "answer locked 0",
+      "value": true
+    },
+    {
+      "name": "answer locked 1",
+      "value": true
+    },
+    {
+      "name": "answer locked 2",
+      "value": true
+    },
+    {
+      "name": "answer locked 3",
+      "value": true
+    },
+    {
+      "name": "answer locked 4",
+      "value": true
+    },
+    {
+      "name": "first score 80",
+      "value": true
+    },
+    {
+      "name": "failure visible",
+      "value": true
+    },
+    {
+      "name": "retry stored once",
+      "value": true
+    },
+    {
+      "name": "reload retains record",
+      "value": true
+    },
+    {
+      "name": "preview open",
+      "value": true
+    },
+    {
+      "name": "preview focus restored",
+      "value": true
+    },
+    {
+      "name": "no runtime errors",
+      "value": true
+    }
+  ],
+  "runtimeErrors": []
+}
